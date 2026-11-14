@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "psd2plp"
+version = "0.1.0"
+description = "Convertisseur PSD/SVG vers PLP (format de projet PixelLab)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Lemuel Nk", email = "lemuel@lnkstudio.dev" },
+]
+keywords = ["psd", "svg", "plp", "pixellab", "converter", "image"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Multimedia :: Graphics :: Editors",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+]
+
+dependencies = [
+    "psd-tools>=1.10",
+    "Pillow>=10.0",
+    "scikit-image>=0.22",
+    "cairosvg>=2.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/Lemuelnk/psd2plp"
+"Bug Tracker" = "https://github.com/Lemuelnk/psd2plp/issues"
+Documentation = "https://github.com/Lemuelnk/psd2plp/tree/main/docs"
+
+[project.scripts]
+psd2plp = "psd2plp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+psd2plp = ["py.typed"]

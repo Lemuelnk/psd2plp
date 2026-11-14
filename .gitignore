@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Assets binaires lourds (ne pas commit)
+*.psd
+*.plp
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.pfx
+
+# Fichiers d'environnement
+.env
+.env.*
+
+# Sorties du convertisseur
+output/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
