@@ -45,8 +45,8 @@ veut tester dans l'app.
 
 Script helper `push.sh` (à la racine du projet) :
 
-    bash push.sh                 # archive tous les output/*.plp
-    bash push.sh mon.plp         # archive un fichier nomme
+    bash scripts/push-to-pixellab.sh                 # archive tous les output/*.plp
+    bash scripts/push-to-pixellab.sh mon.plp         # archive un fichier nomme
 
 ## Format du thumb
 
