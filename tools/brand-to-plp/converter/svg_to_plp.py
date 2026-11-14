@@ -68,10 +68,10 @@ CAP_RATIO = 0.70             # capHeight / em
 ASCENDER_ABOVE_CAP = 0.268   # (ascender - capHeight) / em
 
 # Dossier des fonts subset à embarquer dans res/
-FONTS_DIR = Path(os.environ.get(
-    "LNK_BRAND_FONTS",
-    "/storage/emulated/0/LNK_WORKS/lnk-brand/03-assets/fonts/subset",
-))
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+from psd2plp.config import FONTS_DIR
 
 
 def _tag(elem) -> str:

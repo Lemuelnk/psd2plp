@@ -45,8 +45,8 @@ veut tester dans l'app.
 
 Script helper `push.sh` (à la racine du projet) :
 
-    bash scripts/push-to-pixellab.sh                 # archive tous les output/*.plp
-    bash scripts/push-to-pixellab.sh mon.plp         # archive un fichier nomme
+    bash push.sh                 # archive tous les output/*.plp
+    bash push.sh mon.plp         # archive un fichier nomme
 
 ## Format du thumb
 
@@ -84,3 +84,17 @@ Utile pour voir ce que PixelLab ajoute/corrige à la sauvegarde :
     print('gen:', da['objectsIds'])
     print('sav:', db['objectsIds'])
     "
+
+## REGLE ABSOLUE : jamais dans presets/
+
+`pixelLab/presets/` est reserve a PixelLab/LNK Studio pour ses propres
+projets. Nos PLP generes vont TOUJOURS dans :
+
+    /storage/emulated/0/pixelLab/psd2plp_out/
+
+Le helper `scripts/push-to-pixellab.sh` fait deja ca. Ne jamais copier
+manuellement vers `presets/`.
+
+Deux dossiers existent a la racine de pixelLab :
+- `psd2plp/`     : ancien, obsolete
+- `psd2plp_out/` : archive active

@@ -1,0 +1,24 @@
+{
+  "canvas": {"width": 1080, "height": 1350, "bg": "#001A17", "margin": 80},
+  "objects": [
+    {"kind": "text", "text": "LNK STUDIO",
+     "x": 80, "y": 80, "size_px": 24,
+     "font": "Montserrat-SemiBold", "color": "#F4F9F8"},
+    {"kind": "text", "text": "Votre idée",
+     "x": 80, "y": 350, "size_px": 110,
+     "font": "Montserrat-ExtraBold", "color": "#F4F9F8",
+     "align": "center"},
+    {"kind": "text", "text": "Notre créativité",
+     "x": 80, "y": 490, "size_px": 110,
+     "font": "Montserrat-ExtraBold", "color": "#FFC107",
+     "align": "center"},
+    {"kind": "rect", "x": 80, "y": 700, "w": 920, "h": 6,
+     "fill": "#FF7043", "radius_pct": 50},
+    {"kind": "text", "text": "Design · Branding · Motion · Impression",
+     "x": 80, "y": 770, "size_px": 32,
+     "font": "Montserrat-Regular", "color": "#F4F9F8",
+     "align": "center"},
+    {"kind": "oval", "x": 700, "y": 1000, "w": 300, "h": 300,
+     "fill": "#009688"}
+  ]
+}

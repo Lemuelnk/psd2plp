@@ -1,0 +1,23 @@
+{
+  "canvas": {"width": 1080, "height": 1080, "bg": "#F4F9F8", "margin": 80},
+  "objects": [
+    {"kind": "text", "text": "Votre idée",
+     "x": 80, "y": 400, "size_px": 140,
+     "font": "Montserrat-ExtraBold",
+     "color": "#001A17",
+     "align": "center",
+     "runs": [
+       {"length": 6, "color": "#001A17"},
+       {"length": 4, "color": "#FF7043"}
+     ]},
+    {"kind": "text", "text": "Notre créativité",
+     "x": 80, "y": 620, "size_px": 140,
+     "font": "Montserrat-ExtraBold",
+     "color": "#001A17",
+     "align": "center",
+     "runs": [
+       {"length": 6, "color": "#001A17"},
+       {"length": 10, "color": "#009688"}
+     ]}
+  ]
+}

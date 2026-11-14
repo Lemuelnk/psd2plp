@@ -10,7 +10,7 @@ dist/
 .mypy_cache/
 .ruff_cache/
 
-# Assets binaires lourds (ne pas commit)
+# Assets binaires lourds (dans psd2plp_data/)
 *.psd
 *.plp
 *.apk
@@ -20,12 +20,17 @@ dist/
 *.p12
 *.pfx
 
+# Symlinks vers assets lourds (shared) - sans slash pour matcher symlinks
+examples/psd
+examples/plp
+output
+
+# Le dossier tools/brand-to-plp/source/ n'est pas versionné (copie de lnk-brand)
+tools/brand-to-plp/source/
+
 # Fichiers d'environnement
 .env
 .env.*
-
-# Sorties du convertisseur
-output/
 
 # OS / IDE
 .DS_Store

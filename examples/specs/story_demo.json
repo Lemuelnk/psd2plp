@@ -1,0 +1,22 @@
+{
+  "canvas": {"width": 1080, "height": 1920, "bg": "#F4F9F8", "margin": 80},
+  "objects": [
+    {"kind": "rect", "x": 0, "y": 0, "w": 1080, "h": 300, "fill": "#001A17"},
+    {"kind": "text", "text": "LNK STUDIO",
+     "x": 80, "y": 120, "size_px": 32,
+     "font": "Montserrat-SemiBold", "color": "#F4F9F8"},
+    {"kind": "text", "text": "Une story qui accroche",
+     "x": 80, "y": 500, "size_px": 90,
+     "font": "Montserrat-ExtraBold", "color": "#001A17",
+     "align": "center"},
+    {"kind": "text", "text": "Texte d'accroche court et percutant pour capter l'attention en 3 secondes.",
+     "x": 80, "y": 750, "size_px": 42,
+     "font": "Montserrat-Regular", "color": "#001A17",
+     "align": "center"},
+    {"kind": "oval", "x": 400, "y": 1100, "w": 280, "h": 280, "fill": "#FFC107"},
+    {"kind": "text", "text": "SWIPE UP",
+     "x": 80, "y": 1650, "size_px": 48,
+     "font": "Montserrat-Bold", "color": "#FF7043",
+     "align": "center"}
+  ]
+}

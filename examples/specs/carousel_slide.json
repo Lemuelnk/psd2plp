@@ -1,0 +1,17 @@
+{
+  "canvas": {"width": 1080, "height": 1080, "bg": "#001A17", "margin": 100},
+  "objects": [
+    {"kind": "text", "text": "01",
+     "x": 80, "y": 80, "size_px": 80,
+     "font": "Montserrat-ExtraBold", "color": "#FFC107"},
+    {"kind": "rect", "x": 80, "y": 220, "w": 200, "h": 6,
+     "fill": "#FF7043", "radius_pct": 50},
+    {"kind": "text", "text": "3 astuces pour\nbooster votre design",
+     "x": 80, "y": 350, "size_px": 90,
+     "font": "Montserrat-ExtraBold", "color": "#F4F9F8"},
+    {"kind": "text", "text": "Glissez pour découvrir",
+     "x": 80, "y": 900, "size_px": 36,
+     "font": "Montserrat-Regular", "color": "#F4F9F8"},
+    {"kind": "oval", "x": 850, "y": 850, "w": 180, "h": 180, "fill": "#009688"}
+  ]
+}
