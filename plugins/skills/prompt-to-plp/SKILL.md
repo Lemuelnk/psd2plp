@@ -40,7 +40,7 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 
 ## Font catalog and licensing
 
-- Starter catalog: 150 curated Google Fonts families. `sync_fontsource_catalog` verifies matching Fontsource IDs and records weights, styles, subsets, categories and versions.
+- The local seed contains 150 curated families. `sync_fontsource_catalog` expands the searchable catalog with the full Fontsource directory and records IDs, weights, styles, subsets, categories and versions.
 - Downloaded Fontsource and Google Fonts TTFs are stored under `data/fonts/downloaded/`; Google Fonts downloads retain the repository license file. Review Fontsource package licensing before redistribution.
 - Custom TTF/OTF files are stored under `data/fonts/custom/`; only TTF files are currently embedded by the generator.
 - The importer's license field is a user declaration, not legal verification.
