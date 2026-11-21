@@ -151,44 +151,116 @@ def _fontsource_get(property_name: str) -> dict:
     return value
 
 
+def _fontsource_get_all_fonts() -> list[dict]:
+    """Fetch the complete Fontsource public font directory."""
+    url = "https://api.fontsource.org/v1/fonts"
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "LNK-PSD2PLP-FontEngine/0.3", "Accept": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=30) as response:
+        final_url = urlparse(response.geturl())
+        if final_url.scheme != "https" or final_url.hostname != "api.fontsource.org":
+            raise ValueError("Unexpected redirect host while querying Fontsource.")
+        raw = response.read(32 * 1024 * 1024 + 1)
+        if len(raw) > 32 * 1024 * 1024:
+            raise ValueError("Fontsource catalog response exceeds 32 MiB.")
+    records = json.loads(raw.decode("utf-8"))
+    if not isinstance(records, list):
+        raise ValueError("Fontsource /v1/fonts response must be a JSON array.")
+    return records
+
+
 def sync_fontsource_catalog() -> dict:
-    """Refresh Fontsource metadata for the starter catalog; no font binaries are fetched."""
-    props = {name: _fontsource_get(name) for name in ("family", "weights", "styles", "subsets", "type", "category", "variable", "version", "lastModified")}
-    normalized = {}
-    for font_id, family_name in props["family"].items():
-        key = re.sub(r"[^a-z0-9]+", "", str(family_name).casefold())
-        normalized[key] = font_id
+    """Merge the full Fontsource open-source directory into the local searchable catalog."""
+    records = _fontsource_get_all_fonts()
     data = _load_catalog()
-    matched = []
-    missing = []
-    for family in data["families"]:
-        if family.get("custom"):
+    families = data["families"]
+    by_provider_id = {
+        family.get("fontsource_id"): family
+        for family in families if family.get("fontsource_id")
+    }
+    by_name = {
+        re.sub(r"[^a-z0-9]+", "", family.get("family", "").casefold()): family
+        for family in families if family.get("family")
+    }
+    added, updated, skipped = [], [], []
+    for record in records:
+        if not isinstance(record, dict):
             continue
-        key = re.sub(r"[^a-z0-9]+", "", family.get("family", "").casefold())
-        font_id = normalized.get(key)
-        if not font_id:
-            family["fontsource_status"] = "not_found"
-            missing.append(family["family"])
+        font_id = record.get("id")
+        family_name = record.get("family")
+        if (
+            not isinstance(font_id, str)
+            or not re.fullmatch(r"[a-z0-9-]+", font_id)
+            or not isinstance(family_name, str)
+            or not family_name.strip()
+        ):
+            skipped.append(str(font_id or "unknown"))
             continue
+        normalized = re.sub(r"[^a-z0-9]+", "", family_name.casefold())
+        family = by_provider_id.get(font_id) or by_name.get(normalized)
+        if family is None:
+            local_id = font_id if not any(f.get("id") == font_id for f in families) else f"fontsource-{font_id}"
+            family = {
+                "id": local_id,
+                "family": family_name,
+                "category": record.get("category") or "sans-serif",
+                "tags": [record.get("category") or "sans-serif", "fontsource"],
+                "providers": [],
+                "availability": "catalog_only",
+                "license": None,
+                "license_status": "review_required",
+                "custom": False,
+                "variants": [],
+            }
+            families.append(family)
+            added.append(family_name)
+            by_name[normalized] = family
+        else:
+            updated.append(family_name)
+
         family["fontsource_id"] = font_id
         family["fontsource_status"] = "verified"
-        family["fontsource_package_candidate"] = "@fontsource/" + font_id
-        family["fontsource_weights"] = props["weights"].get(font_id, [])
-        family["fontsource_styles"] = props["styles"].get(font_id, [])
-        family["fontsource_subsets"] = props["subsets"].get(font_id, [])
-        family["fontsource_type"] = props["type"].get(font_id)
-        family["fontsource_category"] = props["category"].get(font_id)
-        family["fontsource_variable"] = props["variable"].get(font_id)
-        family["fontsource_version"] = props["version"].get(font_id)
-        family["fontsource_last_modified"] = props["lastModified"].get(font_id)
-        if "fontsource" not in family.setdefault("providers", []):
-            family["providers"].append("fontsource")
-        matched.append(family["family"])
-    data["fontsource_synced_at"] = __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat()
+        family["fontsource_package_candidate"] = f"@fontsource/{font_id}"
+        family["fontsource_weights"] = record.get("weights", [])
+        family["fontsource_styles"] = record.get("styles", [])
+        family["fontsource_subsets"] = record.get("subsets", [])
+        family["fontsource_type"] = record.get("type")
+        family["fontsource_category"] = record.get("category")
+        family["fontsource_variable"] = bool(record.get("variable", False))
+        family["fontsource_version"] = record.get("version")
+        family["fontsource_last_modified"] = record.get("lastModified")
+        family["fontsource_default_subset"] = record.get("defSubset")
+        providers = family.setdefault("providers", [])
+        if "fontsource" not in providers:
+            providers.append("fontsource")
+        if not family.get("category"):
+            family["category"] = record.get("category") or "sans-serif"
+        tags = family.setdefault("tags", [])
+        category = record.get("category")
+        if category and category not in tags:
+            tags.append(category)
+        if not family.get("variants"):
+            family["availability"] = "catalog_only"
+
+    data["fontsource_synced_at"] = __import__("datetime").datetime.now(
+        __import__("datetime").timezone.utc
+    ).isoformat()
+    data["fontsource_record_count"] = len(records)
     _save_catalog(data)
-    return {"synced": True, "matched_count": len(matched), "not_found_count": len(missing),
-            "matched_families": matched, "not_found_families": missing,
-            "note": "Fontsource metadata is synchronized. This endpoint does not download font binaries; Google Fonts remains the TTF source and custom imports remain local."}
+    return {
+        "synced": True,
+        "provider": "fontsource",
+        "provider_records": len(records),
+        "catalog_families": len(families),
+        "added_count": len(added),
+        "updated_count": len(updated),
+        "skipped_count": len(skipped),
+        "added_families": added[:100],
+        "skipped_records": skipped[:100],
+        "note": "Fontsource family metadata is indexed locally. Font binaries are downloaded only when requested; inspect each package license before redistribution.",
+    }
 
 def _font_magic(path: Path) -> str:
     with path.open("rb") as f:
