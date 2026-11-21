@@ -119,7 +119,6 @@ def parse_spec(data: dict) -> Spec:
                 y=float(obj.get("y", 0)),
                 size_px=float(obj["size_px"]),
                 font=font,
-                font_path=obj.get("font_path"),
                 color=obj.get("color", "#000000"),
                 align=obj.get("align", "left"),
                 opacity=int(obj.get("opacity", 100)),
