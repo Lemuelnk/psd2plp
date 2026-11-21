@@ -54,6 +54,7 @@ class SpecText:
     y: float = 0.0
     size_px: float = 40.0
     font: str = "Montserrat-Regular"
+    font_path: str | None = None  # chemin TTF local résolu par le Font Engine
     color: str = "#000000"
     align: Literal["left", "center", "right"] = "left"
     opacity: int = 100
@@ -118,6 +119,7 @@ def parse_spec(data: dict) -> Spec:
                 y=float(obj.get("y", 0)),
                 size_px=float(obj["size_px"]),
                 font=font,
+                font_path=obj.get("font_path"),
                 color=obj.get("color", "#000000"),
                 align=obj.get("align", "left"),
                 opacity=int(obj.get("opacity", 100)),
