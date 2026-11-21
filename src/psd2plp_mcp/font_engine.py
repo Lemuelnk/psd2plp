@@ -489,12 +489,13 @@ def _select_fontsource_variant(details: dict, weight: int = 400, style: str = "n
                     "subset_rank": subset_order.index(actual_subset),
                     "weight_delta": abs(actual_weight - int(weight)),
                 })
+    candidates = [item for item in candidates if item["style"] == style]
     if not candidates:
         raise FileNotFoundError(
-            f"No TTF variant available for {details.get('family', details.get('id', 'font'))}."
+            f"No TTF variant with style '{style}' for {details.get('family', details.get('id', 'font'))}."
         )
     candidates.sort(key=lambda item: (
-        item["style_rank"], item["subset_rank"], item["weight_delta"], item["weight"]
+        item["subset_rank"], item["weight_delta"], item["weight"]
     ))
     selected = candidates[0]
     parsed = urlparse(selected["url"])
@@ -627,11 +628,14 @@ def resolve_font_file(family_id: str, weight: int = 400, style: str = "normal") 
         raise FileNotFoundError(
             f"No downloaded TTF for {family['family']}. Call download_font before generate_plp."
         )
-    candidates.sort(key=lambda variant: (
-        variant.get("style") != style,
-        abs(int(variant.get("weight", 400)) - int(weight)),
-        variant.get("provider") != "fontsource",
-    ))
+    candidates = [variant for variant in candidates if variant.get("style", "normal") == style]
+    candidates = [variant for variant in candidates if int(variant.get("weight", 400)) == int(weight)]
+    if not candidates:
+        raise FileNotFoundError(
+            f"No downloaded TTF for {family['family']} at weight {weight} and style {style}. "
+            "Download the exact variant first."
+        )
+    candidates.sort(key=lambda variant: variant.get("provider") != "fontsource")
     for variant in candidates:
         relative = PurePosixPath(variant["file"])
         if relative.is_absolute() or ".." in relative.parts:
