@@ -14,6 +14,7 @@ import struct
 import urllib.error
 import urllib.request
 from pathlib import Path, PurePosixPath
+from urllib.parse import urlparse
 from typing import Any
 
 import os as _os
@@ -24,7 +25,7 @@ CATALOG_PATH = LIBRARY_DIR / "catalog.json"
 # Dossier pour les TTF téléchargés et custom (gitignoré)
 DOWNLOADS_DIR = Path(_os.environ.get("PSD2PLP_FONT_DOWNLOADS", HERE / "data" / "fonts" / "downloaded"))
 CUSTOM_DIR = Path(_os.environ.get("PSD2PLP_FONT_CUSTOM", HERE / "data" / "fonts" / "custom"))
-INPUT_FONT_DIR = Path(_os.environ.get("PSD2PLP_FONT_INPUT", HERE / "data" / "fonts" / "input"))
+INPUT_FONT_DIR = Path(_os.environ.get("PSD2PLP_FONT_INPUT", HERE / "input" / "fonts"))
 CUSTOM_DIR = CUSTOM_DIR
 DOWNLOAD_DIR = DOWNLOADS_DIR
 MAX_FONT_BYTES = 32 * 1024 * 1024
@@ -284,7 +285,7 @@ def import_custom_font(filename: str, license_name: str, family_name: str = "", 
                   "license_status": "user_declared", "custom": True, "designer": designer or None,
                   "license_url": license_url or None, "variants": []}
         data["families"].append(family)
-    variant = {"weight": weight, "style": style, "format": fmt, "file": str(dest.relative_to(LIBRARY_DIR.parent)).replace("\\", "/"),
+    variant = {"weight": weight, "style": style, "format": fmt, "file": str(dest.relative_to(HERE)).replace("\\", "/"),
                "sha256": digest, "bytes": dest.stat().st_size, "embedded_subfamily": embedded_style}
     if not any(v.get("sha256") == digest for v in family["variants"]): family["variants"].append(variant)
     _save_catalog(data)
@@ -357,7 +358,7 @@ def download_google_font(family_id: str, weight: int = 400, style: str = "normal
             item["license"] = "OFL-1.1" if license_file == "OFL.txt" else ("UFL-1.0" if license_file == "UFL.txt" else "see_license_file")
             item["license_status"] = "source_metadata"
             variant = {"weight": selected["weight"], "style": selected["style"], "format": "ttf",
-                       "file": str(dest.relative_to(LIBRARY_DIR.parent)).replace("\\", "/"), "sha256": digest, "bytes": len(raw_font)}
+                       "file": str(dest.relative_to(HERE)).replace("\\", "/"), "sha256": digest, "bytes": len(raw_font)}
             if not any(v.get("sha256") == digest for v in item.get("variants", [])):
                 item.setdefault("variants", []).append(variant)
             if license_text:
@@ -365,6 +366,198 @@ def download_google_font(family_id: str, weight: int = 400, style: str = "normal
             break
     _save_catalog(data)
     return {"downloaded": True, "family": family["family"], "variant": selected,
-            "file": str(dest.relative_to(LIBRARY_DIR.parent)).replace("\\", "/"), "bytes": len(raw_font),
+            "file": str(dest.relative_to(HERE)).replace("\\", "/"), "bytes": len(raw_font),
             "sha256": digest, "license_file": license_file,
             "note": "TTF downloaded for local use. This does not establish that PixelLab embeds or resolves it inside PLP projects."}
+
+
+def _select_fontsource_variant(details: dict, weight: int = 400, style: str = "normal", subset: str = "latin") -> dict:
+    """Choose the closest published TTF face, preferring exact style/subset/weight."""
+    variants = details.get("variants")
+    if not isinstance(variants, dict):
+        raise ValueError("Fontsource response has no usable variants.")
+    default_subset = details.get("defSubset") or "latin"
+    subset_order = []
+    for candidate in (subset, default_subset, "latin"):
+        if candidate and candidate not in subset_order:
+            subset_order.append(candidate)
+    candidates = []
+    for weight_key, styles in variants.items():
+        try:
+            actual_weight = int(weight_key)
+        except (TypeError, ValueError):
+            continue
+        if not isinstance(styles, dict):
+            continue
+        for actual_style, subsets in styles.items():
+            if not isinstance(subsets, dict):
+                continue
+            for actual_subset, payload in subsets.items():
+                if actual_subset not in subset_order or not isinstance(payload, dict):
+                    continue
+                urls = payload.get("url") or {}
+                ttf_url = urls.get("ttf") if isinstance(urls, dict) else None
+                if not isinstance(ttf_url, str) or not ttf_url:
+                    continue
+                candidates.append({
+                    "weight": actual_weight, "style": actual_style, "subset": actual_subset,
+                    "url": ttf_url, "style_rank": 0 if actual_style == style else 1,
+                    "subset_rank": subset_order.index(actual_subset),
+                    "weight_delta": abs(actual_weight - int(weight)),
+                })
+    if not candidates:
+        raise FileNotFoundError(
+            f"No TTF variant available for {details.get('family', details.get('id', 'font'))}."
+        )
+    candidates.sort(key=lambda item: (
+        item["style_rank"], item["subset_rank"], item["weight_delta"], item["weight"]
+    ))
+    selected = candidates[0]
+    parsed = urlparse(selected["url"])
+    if (parsed.scheme != "https" or parsed.hostname != "cdn.jsdelivr.net"
+            or not parsed.path.startswith("/fontsource/fonts/")
+            or not parsed.path.lower().endswith(".ttf")):
+        raise ValueError("Fontsource returned a TTF URL outside its approved CDN path.")
+    return selected
+
+
+def download_fontsource_font(
+    family_id: str, weight: int = 400, style: str = "normal", subset: str = "latin"
+) -> dict:
+    """Download one TTF face from the official Fontsource API/CDN."""
+    family = get_font(family_id)
+    fontsource_id = family.get("fontsource_id")
+    if not fontsource_id:
+        candidate = family.get("fontsource_package_candidate", "")
+        if isinstance(candidate, str) and candidate.startswith("@fontsource/"):
+            fontsource_id = candidate.removeprefix("@fontsource/")
+    if not fontsource_id or not re.fullmatch(r"[a-z0-9-]+", fontsource_id):
+        raise ValueError(
+            "Fontsource ID is unknown. Run sync_fontsource_catalog first or choose provider='google_fonts'."
+        )
+    if not 1 <= int(weight) <= 1000:
+        raise ValueError("weight must be between 1 and 1000.")
+    style = style.casefold()
+    if style not in ("normal", "italic"):
+        raise ValueError("style must be normal or italic.")
+    if not re.fullmatch(r"[a-z0-9-]+", subset.casefold()):
+        raise ValueError("Invalid font subset.")
+    subset = subset.casefold()
+
+    api_url = f"https://api.fontsource.org/v1/fonts/{fontsource_id}"
+    request = urllib.request.Request(
+        api_url, headers={"User-Agent": "LNK-PSD2PLP-FontEngine/0.3", "Accept": "application/json"}
+    )
+    with urllib.request.urlopen(request, timeout=20) as response:
+        final_url = urlparse(response.geturl())
+        if final_url.scheme != "https" or final_url.hostname != "api.fontsource.org":
+            raise ValueError("Unexpected redirect host while querying Fontsource.")
+        raw = response.read(8 * 1024 * 1024 + 1)
+        if len(raw) > 8 * 1024 * 1024:
+            raise ValueError("Fontsource font metadata exceeds 8 MiB.")
+    details = json.loads(raw.decode("utf-8"))
+    if not isinstance(details, dict) or details.get("id") != fontsource_id:
+        raise ValueError("Fontsource returned an unexpected font record.")
+
+    selected = _select_fontsource_variant(details, weight, style, subset)
+    asset_request = urllib.request.Request(
+        selected["url"], headers={"User-Agent": "LNK-PSD2PLP-FontEngine/0.3"}
+    )
+    with urllib.request.urlopen(asset_request, timeout=30) as response:
+        final_url = urlparse(response.geturl())
+        if final_url.scheme != "https" or final_url.hostname != "cdn.jsdelivr.net":
+            raise ValueError("Unexpected redirect host while downloading Fontsource asset.")
+        raw_font = response.read(MAX_FONT_BYTES + 1)
+        if len(raw_font) > MAX_FONT_BYTES:
+            raise ValueError("Downloaded Fontsource font exceeds 32 MiB.")
+    if raw_font[:4] not in (b"\x00\x01\x00\x00", b"true"):
+        raise ValueError("Fontsource TTF endpoint did not return a valid TTF SFNT file.")
+
+    dest_dir = DOWNLOADS_DIR / "fontsource" / fontsource_id
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / f"{selected['weight']}-{selected['style']}-{selected['subset']}.ttf"
+    tmp = dest.with_suffix(".ttf.tmp")
+    tmp.write_bytes(raw_font)
+    tmp.replace(dest)
+    digest = hashlib.sha256(raw_font).hexdigest()
+    relative_file = str(dest.relative_to(HERE)).replace("\\", "/")
+
+    data = _load_catalog()
+    for item in data["families"]:
+        if item.get("id") == family["id"]:
+            variant = {
+                "provider": "fontsource", "provider_id": fontsource_id,
+                "provider_version": details.get("version"), "weight": selected["weight"],
+                "style": selected["style"], "subset": selected["subset"], "format": "ttf",
+                "file": relative_file, "sha256": digest, "bytes": len(raw_font),
+            }
+            variants = item.setdefault("variants", [])
+            variants[:] = [
+                old for old in variants
+                if not (old.get("provider") == "fontsource"
+                        and old.get("weight") == selected["weight"]
+                        and old.get("style") == selected["style"]
+                        and old.get("subset") == selected["subset"])
+            ]
+            variants.append(variant)
+            item["availability"] = "downloaded"
+            item.setdefault("providers", [])
+            if "fontsource" not in item["providers"]:
+                item["providers"].append("fontsource")
+            item["fontsource_version"] = details.get("version")
+            break
+    _save_catalog(data)
+    return {
+        "downloaded": True, "provider": "fontsource", "family": family["family"],
+        "variant": {k: selected[k] for k in ("weight", "style", "subset")},
+        "file": relative_file, "bytes": len(raw_font), "sha256": digest,
+        "license": family.get("license"),
+        "license_status": family.get("license_status", "not_verified_by_downloader"),
+        "note": "TTF downloaded from Fontsource and indexed locally. Review the font package license; PixelLab open/save compatibility still requires a device test.",
+    }
+
+
+def download_font(
+    family_id: str, weight: int = 400, style: str = "normal",
+    provider: str = "auto", subset: str = "latin",
+) -> dict:
+    """Download a TTF variant from Fontsource or Google Fonts."""
+    family = get_font(family_id)
+    if provider == "auto":
+        provider = "fontsource" if family.get("fontsource_id") else "google_fonts"
+    if provider == "fontsource":
+        return download_fontsource_font(family_id, weight, style, subset)
+    if provider == "google_fonts":
+        return download_google_font(family_id, weight, style)
+    raise ValueError("provider must be auto, fontsource or google_fonts.")
+
+
+def resolve_font_file(family_id: str, weight: int = 400, style: str = "normal") -> dict:
+    """Resolve an already downloaded TTF face to a safe file inside this repository."""
+    family = get_font(family_id)
+    candidates = [
+        variant for variant in family.get("variants", [])
+        if variant.get("format") == "ttf" and variant.get("file")
+    ]
+    if not candidates:
+        raise FileNotFoundError(
+            f"No downloaded TTF for {family['family']}. Call download_font before generate_plp."
+        )
+    candidates.sort(key=lambda variant: (
+        variant.get("style") != style,
+        abs(int(variant.get("weight", 400)) - int(weight)),
+        variant.get("provider") != "fontsource",
+    ))
+    for variant in candidates:
+        relative = PurePosixPath(variant["file"])
+        if relative.is_absolute() or ".." in relative.parts:
+            continue
+        path = (HERE / Path(*relative.parts)).resolve()
+        if HERE.resolve() not in path.parents or not path.is_file():
+            continue
+        if path.suffix.lower() != ".ttf":
+            continue
+        return {"family": family, "variant": variant, "path": path}
+    raise FileNotFoundError(
+        f"Downloaded TTF for {family['family']} is missing or outside the project font store."
+    )
