@@ -280,20 +280,105 @@ def plp_from_spec(spec: Spec, plp_name: str = "untitled") -> PlpProject:
 
 
 def _build_thumb(proj: PlpProject, spec: Spec):
-    """Genere un thumb composite simple via PIL (sans SVG).
-    Estime : bg color + rectangles de toutes les shapes pour donner un apercu.
-    """
+    """Genere un thumb composite via PIL (rendu fidele a petite echelle)."""
     try:
-        W = min(spec.canvas.width, 512)
-        H = int(min(spec.canvas.height, 512) * spec.canvas.height / spec.canvas.width)
+        from PIL import ImageDraw, ImageFont
+        THUMB_MAX = 512
+        ratio = min(THUMB_MAX / spec.canvas.width, THUMB_MAX / spec.canvas.height)
+        W = max(1, int(spec.canvas.width * ratio))
+        H = max(1, int(spec.canvas.height * ratio))
+
         img = Image.new("RGBA", (W, H), _argb_to_rgba(_hex_to_argb(spec.canvas.bg)))
-        # TODO : composer les shapes/text pour un thumb plus fidele
-        # Pour l'instant c'est juste le bg, ce qui suffit pour lister
+        draw = ImageDraw.Draw(img)
+
+        for obj in spec.objects:
+            if isinstance(obj, SpecShape):
+                _thumb_draw_shape(draw, obj, ratio)
+            elif isinstance(obj, SpecText):
+                _thumb_draw_text(img, obj, ratio)
+            elif isinstance(obj, SpecImage):
+                _thumb_draw_image(img, obj, ratio)
+
         buf = io.BytesIO()
         img.save(buf, format="PNG", optimize=True)
         proj.raw_template["_thumb_bytes"] = buf.getvalue()
     except Exception:
         pass
+
+
+def _thumb_draw_shape(draw, o, ratio):
+    x0 = o.x * ratio
+    y0 = o.y * ratio
+    x1 = (o.x + o.w) * ratio
+    y1 = (o.y + o.h) * ratio
+    rgba = _argb_to_rgba(_hex_to_argb(o.fill))
+    if o.opacity < 100:
+        rgba = (rgba[0], rgba[1], rgba[2], int(rgba[3] * o.opacity / 100))
+    if o.kind == "oval":
+        draw.ellipse([x0, y0, x1, y1], fill=rgba)
+    elif o.kind == "tri":
+        draw.polygon([((x0 + x1) / 2, y0), (x0, y1), (x1, y1)], fill=rgba)
+    else:  # rect
+        r = int(min(x1 - x0, y1 - y0) * o.radius_pct / 100.0)
+        if r > 0:
+            draw.rounded_rectangle([x0, y0, x1, y1], radius=r, fill=rgba)
+        else:
+            draw.rectangle([x0, y0, x1, y1], fill=rgba)
+
+
+def _thumb_draw_text(img, o, ratio):
+    from PIL import ImageDraw, ImageFont
+    ttf = FONTS_DIR / f"{o.font}.ttf"
+    if not ttf.exists():
+        return
+    font_size_em = (o.size_px / CAP_RATIO) * ratio
+    if font_size_em < 1:
+        return
+    try:
+        f = ImageFont.truetype(str(ttf), int(round(font_size_em)))
+    except Exception:
+        return
+
+    # Pas d'auto-fit dans le thumb (le spec principal l'a déjà appliqué)
+    text = o.text
+    x = o.x * ratio
+    y = o.y * ratio
+    rgba = _argb_to_rgba(_hex_to_argb(o.color))
+    # PixelLab textY = top du em-box, mais draw.text = top du bbox visuel.
+    # Ajout d'un offset approximatif : ~ 0.15 em pour matcher
+    offset = 0.20 * font_size_em
+    draw = ImageDraw.Draw(img)
+    # Multi-lignes
+    for i, line in enumerate(text.split("\n")):
+        line_y = y + i * font_size_em * 1.15 + offset
+        if o.align == "center":
+            bbox = draw.textbbox((0, 0), line, font=f)
+            tw = bbox[2] - bbox[0]
+            line_x = (img.width - tw) / 2
+        elif o.align == "right":
+            bbox = draw.textbbox((0, 0), line, font=f)
+            tw = bbox[2] - bbox[0]
+            line_x = img.width - tw - 20
+        else:
+            line_x = x
+        draw.text((line_x, line_y), line, font=f, fill=rgba)
+
+
+def _thumb_draw_image(img, o, ratio):
+    from PIL import Image as PILImage
+    try:
+        sub = PILImage.open(o.path).convert("RGBA")
+    except Exception:
+        return
+    w = int(o.w * ratio)
+    h = int(o.h * ratio)
+    if w < 1 or h < 1:
+        return
+    sub = sub.resize((w, h), PILImage.LANCZOS)
+    if o.opacity < 100:
+        alpha = sub.split()[3].point(lambda a: int(a * o.opacity / 100))
+        sub.putalpha(alpha)
+    img.alpha_composite(sub, dest=(int(o.x * ratio), int(o.y * ratio)))
 
 
 def _argb_to_rgba(v: int) -> tuple:
