@@ -23,7 +23,7 @@ The bundled MCP server is a **local stdio tool**. It writes generated projects t
 
 ## Critical native PLP font limitation
 
-The inspected PLP writer currently writes `textTextFont: {}`. The exact PixelLab font reference structure has not been verified from a native project produced by the target PixelLab app version. Do not guess its keys or claim a selected family is embedded/applied.
+The writer now serializes downloaded TTFs into `res/` and writes a `textTextFont.interval1.textsIntervalsFont` resource reference. This is the current writer contract; it has not yet been verified against a native custom-font PLP produced by the target PixelLab app version.
 
 When `font_family` is included in a `generate_plp` text object, the engine resolves the requested downloaded TTF face and embeds its bytes in `res/`; the writer points the text font interval to that resource. The serialization is implemented, but actual PixelLab compatibility must still be checked by opening, saving and reopening the generated project on the target device. If the family has not been downloaded, generation returns an actionable error rather than silently substituting another font.
 
@@ -35,14 +35,14 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 4. Pass geometry in source-canvas pixels; the engine converts it to the 708-unit reference space.
 5. Use signed ARGB or `#RRGGBB` / `#AARRGGBB` colors.
 6. Call `generate_plp`; array order is bottom-to-top.
-7. Call `validate_plp` after generation. Report the `.plp` and companion font manifest separately.
+7. Call `validate_plp` after generation. Report structural validation separately from the still-required PixelLab device test.
 8. Clearly distinguish structural validation from a successful open/save test in PixelLab.
 
 ## Font catalog and licensing
 
 - Starter catalog: 150 curated Google Fonts families. `sync_fontsource_catalog` verifies matching Fontsource IDs and records weights, styles, subsets, categories and versions.
 - Downloaded Fontsource and Google Fonts TTFs are stored under `data/fonts/downloaded/`; Google Fonts downloads retain the repository license file. Review Fontsource package licensing before redistribution.
-- Custom TTF/OTF files are stored under `font_library/custom/`.
+- Custom TTF/OTF files are stored under `data/fonts/custom/`; only TTF files are currently embedded by the generator.
 - The importer's license field is a user declaration, not legal verification.
 - Only TTF/OTF are accepted for custom imports; WOFF/WOFF2 and TTC are rejected because PixelLab compatibility is not established.
 
@@ -56,7 +56,7 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 ## Not yet supported or verified
 
 - PixelLab open/save/reopen compatibility of downloaded custom font resources.
-- Whether PixelLab embeds font files in `res/`, references installed system fonts, or uses another font resource mechanism.
+- Whether PixelLab loads and preserves the generated TTF resource reference in the target app version.
 - PixelLab's behavior when a project is opened on a device without the selected font.
 - Full fidelity round-trip editing of arbitrary PLP projects.
 - Images and advanced effects.
