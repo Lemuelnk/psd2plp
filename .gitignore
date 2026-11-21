@@ -38,3 +38,13 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Fonts téléchargées / custom / input (locales)
+data/fonts/downloaded/
+data/fonts/custom/
+data/fonts/input/
+media/fonts/catalog.json
+
+# Cache Python du MCP
+src/psd2plp_mcp/__pycache__/
+src/psd2plp_mcp/*.pyc

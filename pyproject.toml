@@ -4,15 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "psd2plp"
-version = "0.1.0"
-description = "Convertisseur PSD/SVG vers PLP (format de projet PixelLab)"
+version = "0.2.0"
+description = "Convertisseur PSD/SVG/Spec JSON vers PLP (format de projet PixelLab), avec serveur MCP pour ChatGPT/Claude"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
 authors = [
-    { name = "Lemuel Nk", email = "lemuel@lnkstudio.dev" },
+    { name = "Lemuel Nk", email = "kanyukalemuel0@gmail.com" },
 ]
-keywords = ["psd", "svg", "plp", "pixellab", "converter", "image"]
+keywords = [
+    "psd", "svg", "plp", "pixellab", "converter", "image",
+    "mcp", "chatgpt", "claude", "design",
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -35,21 +38,31 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# Serveur MCP : dépendances supplémentaires éventuelles.
+# Actuellement le serveur MCP n'utilise que la stdlib + psd2plp lui-même,
+# donc l'extra est vide mais conservé pour extensibilité.
+mcp = []
 dev = [
     "pytest>=7.0",
     "ruff>=0.1",
+]
+all = [
+    "psd2plp[mcp,dev]",
 ]
 
 [project.urls]
 Homepage = "https://github.com/Lemuelnk/psd2plp"
 "Bug Tracker" = "https://github.com/Lemuelnk/psd2plp/issues"
 Documentation = "https://github.com/Lemuelnk/psd2plp/tree/main/docs"
+Source = "https://github.com/Lemuelnk/psd2plp"
 
 [project.scripts]
 psd2plp = "psd2plp.cli:main"
+psd2plp-mcp = "psd2plp_mcp.server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
 psd2plp = ["py.typed"]
+psd2plp_mcp = ["py.typed"]

@@ -1,0 +1,3299 @@
+{
+  "schema_version": 1,
+  "catalog_version": "2026.11.20",
+  "sources": [
+    "google_fonts",
+    "fontsource",
+    "lnk_custom"
+  ],
+  "families": [
+    {
+      "id": "inter",
+      "family": "Inter",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "clean",
+        "ui",
+        "corporate"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "inter",
+      "fontsource_package": "@fontsource/inter",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/inter",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "roboto",
+      "family": "Roboto",
+      "category": "sans-serif",
+      "tags": [
+        "neutral",
+        "modern",
+        "ui",
+        "corporate"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "roboto",
+      "fontsource_package": "@fontsource/roboto",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/roboto",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "opensans",
+      "family": "Open Sans",
+      "category": "sans-serif",
+      "tags": [
+        "readable",
+        "body",
+        "corporate"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "opensans",
+      "fontsource_package": "@fontsource/open-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/open-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "lato",
+      "family": "Lato",
+      "category": "sans-serif",
+      "tags": [
+        "friendly",
+        "corporate",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "lato",
+      "fontsource_package": "@fontsource/lato",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/lato",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "montserrat",
+      "family": "Montserrat",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern",
+        "poster",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "montserrat",
+      "fontsource_package": "@fontsource/montserrat",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/montserrat",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "poppins",
+      "family": "Poppins",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern",
+        "rounded",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "poppins",
+      "fontsource_package": "@fontsource/poppins",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/poppins",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "nunito",
+      "family": "Nunito",
+      "category": "sans-serif",
+      "tags": [
+        "rounded",
+        "friendly",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "nunito",
+      "fontsource_package": "@fontsource/nunito",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/nunito",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "nunitosans",
+      "family": "Nunito Sans",
+      "category": "sans-serif",
+      "tags": [
+        "rounded",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "nunitosans",
+      "fontsource_package": "@fontsource/nunito-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/nunito-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "worksans",
+      "family": "Work Sans",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "worksans",
+      "fontsource_package": "@fontsource/work-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/work-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "dmsans",
+      "family": "DM Sans",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "clean",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "dmsans",
+      "fontsource_package": "@fontsource/dm-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/dm-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "manrope",
+      "family": "Manrope",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern",
+        "premium"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "manrope",
+      "fontsource_package": "@fontsource/manrope",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/manrope",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "outfit",
+      "family": "Outfit",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "outfit",
+      "fontsource_package": "@fontsource/outfit",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/outfit",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "urbanist",
+      "family": "Urbanist",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "urbanist",
+      "fontsource_package": "@fontsource/urbanist",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/urbanist",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "plusjakartasans",
+      "family": "Plus Jakarta Sans",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "geometric",
+        "corporate"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "plusjakartasans",
+      "fontsource_package": "@fontsource/plus-jakarta-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/plus-jakarta-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "rubik",
+      "family": "Rubik",
+      "category": "sans-serif",
+      "tags": [
+        "rounded",
+        "bold",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "rubik",
+      "fontsource_package": "@fontsource/rubik",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/rubik",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "raleway",
+      "family": "Raleway",
+      "category": "sans-serif",
+      "tags": [
+        "elegant",
+        "geometric",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "raleway",
+      "fontsource_package": "@fontsource/raleway",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/raleway",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "sourcesans3",
+      "family": "Source Sans 3",
+      "category": "sans-serif",
+      "tags": [
+        "readable",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "sourcesans3",
+      "fontsource_package": "@fontsource/source-sans-3",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/source-sans-3",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "notosans",
+      "family": "Noto Sans",
+      "category": "sans-serif",
+      "tags": [
+        "multilingual",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "notosans",
+      "fontsource_package": "@fontsource/noto-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/noto-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "figtree",
+      "family": "Figtree",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "clean",
+        "corporate"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "figtree",
+      "fontsource_package": "@fontsource/figtree",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/figtree",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "lexend",
+      "family": "Lexend",
+      "category": "sans-serif",
+      "tags": [
+        "readable",
+        "accessible",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "lexend",
+      "fontsource_package": "@fontsource/lexend",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/lexend",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "mulish",
+      "family": "Mulish",
+      "category": "sans-serif",
+      "tags": [
+        "clean",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "mulish",
+      "fontsource_package": "@fontsource/mulish",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/mulish",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "assistant",
+      "family": "Assistant",
+      "category": "sans-serif",
+      "tags": [
+        "clean",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "assistant",
+      "fontsource_package": "@fontsource/assistant",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/assistant",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "karla",
+      "family": "Karla",
+      "category": "sans-serif",
+      "tags": [
+        "friendly",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "karla",
+      "fontsource_package": "@fontsource/karla",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/karla",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "cabin",
+      "family": "Cabin",
+      "category": "sans-serif",
+      "tags": [
+        "humanist",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "cabin",
+      "fontsource_package": "@fontsource/cabin",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/cabin",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "archivo",
+      "family": "Archivo",
+      "category": "sans-serif",
+      "tags": [
+        "grotesque",
+        "modern",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "archivo",
+      "fontsource_package": "@fontsource/archivo",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/archivo",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "barlow",
+      "family": "Barlow",
+      "category": "sans-serif",
+      "tags": [
+        "condensed",
+        "industrial",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "barlow",
+      "fontsource_package": "@fontsource/barlow",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/barlow",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "barlowcondensed",
+      "family": "Barlow Condensed",
+      "category": "sans-serif",
+      "tags": [
+        "condensed",
+        "impact",
+        "headline",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "barlowcondensed",
+      "fontsource_package": "@fontsource/barlow-condensed",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/barlow-condensed",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "ibmplexsans",
+      "family": "IBM Plex Sans",
+      "category": "sans-serif",
+      "tags": [
+        "technical",
+        "corporate",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "ibmplexsans",
+      "fontsource_package": "@fontsource/ibm-plex-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/ibm-plex-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "publicsans",
+      "family": "Public Sans",
+      "category": "sans-serif",
+      "tags": [
+        "neutral",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "publicsans",
+      "fontsource_package": "@fontsource/public-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/public-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "albertsans",
+      "family": "Albert Sans",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "albertsans",
+      "fontsource_package": "@fontsource/albert-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/albert-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bevietnampro",
+      "family": "Be Vietnam Pro",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "geometric",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bevietnampro",
+      "fontsource_package": "@fontsource/be-vietnam-pro",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/be-vietnam-pro",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "sora",
+      "family": "Sora",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "tech",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "sora",
+      "fontsource_package": "@fontsource/sora",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/sora",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "spacegrotesk",
+      "family": "Space Grotesk",
+      "category": "sans-serif",
+      "tags": [
+        "tech",
+        "geometric",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "spacegrotesk",
+      "fontsource_package": "@fontsource/space-grotesk",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/space-grotesk",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "exo2",
+      "family": "Exo 2",
+      "category": "sans-serif",
+      "tags": [
+        "futuristic",
+        "tech",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "exo2",
+      "fontsource_package": "@fontsource/exo-2",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/exo-2",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "titilliumweb",
+      "family": "Titillium Web",
+      "category": "sans-serif",
+      "tags": [
+        "technical",
+        "modern",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "titilliumweb",
+      "fontsource_package": "@fontsource/titillium-web",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/titillium-web",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "firasans",
+      "family": "Fira Sans",
+      "category": "sans-serif",
+      "tags": [
+        "technical",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "firasans",
+      "fontsource_package": "@fontsource/fira-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/fira-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "ptsans",
+      "family": "PT Sans",
+      "category": "sans-serif",
+      "tags": [
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "ptsans",
+      "fontsource_package": "@fontsource/pt-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/pt-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "hind",
+      "family": "Hind",
+      "category": "sans-serif",
+      "tags": [
+        "humanist",
+        "body",
+        "multilingual"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "hind",
+      "fontsource_package": "@fontsource/hind",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/hind",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "kanit",
+      "family": "Kanit",
+      "category": "sans-serif",
+      "tags": [
+        "bold",
+        "geometric",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "kanit",
+      "fontsource_package": "@fontsource/kanit",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/kanit",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "tajawal",
+      "family": "Tajawal",
+      "category": "sans-serif",
+      "tags": [
+        "arabic",
+        "multilingual",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "tajawal",
+      "fontsource_package": "@fontsource/tajawal",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/tajawal",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "josefinsans",
+      "family": "Josefin Sans",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "retro",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "josefinsans",
+      "fontsource_package": "@fontsource/josefin-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/josefin-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "quicksand",
+      "family": "Quicksand",
+      "category": "sans-serif",
+      "tags": [
+        "rounded",
+        "friendly",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "quicksand",
+      "fontsource_package": "@fontsource/quicksand",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/quicksand",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "comfortaa",
+      "family": "Comfortaa",
+      "category": "sans-serif",
+      "tags": [
+        "rounded",
+        "playful",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "comfortaa",
+      "fontsource_package": "@fontsource/comfortaa",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/comfortaa",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "mavenpro",
+      "family": "Maven Pro",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "mavenpro",
+      "fontsource_package": "@fontsource/maven-pro",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/maven-pro",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "redhatdisplay",
+      "family": "Red Hat Display",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "geometric",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "redhatdisplay",
+      "fontsource_package": "@fontsource/red-hat-display",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/red-hat-display",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "redhattext",
+      "family": "Red Hat Text",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "redhattext",
+      "fontsource_package": "@fontsource/red-hat-text",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/red-hat-text",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "epilogue",
+      "family": "Epilogue",
+      "category": "sans-serif",
+      "tags": [
+        "geometric",
+        "modern",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "epilogue",
+      "fontsource_package": "@fontsource/epilogue",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/epilogue",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "onest",
+      "family": "Onest",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "clean",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "onest",
+      "fontsource_package": "@fontsource/onest",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/onest",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "instrumentsans",
+      "family": "Instrument Sans",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "instrumentsans",
+      "fontsource_package": "@fontsource/instrument-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/instrument-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "afacad",
+      "family": "Afacad",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "afacad",
+      "fontsource_package": "@fontsource/afacad",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/afacad",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "playfairdisplay",
+      "family": "Playfair Display",
+      "category": "serif",
+      "tags": [
+        "luxury",
+        "elegant",
+        "editorial",
+        "wedding"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "playfairdisplay",
+      "fontsource_package": "@fontsource/playfair-display",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/playfair-display",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "cormorantgaramond",
+      "family": "Cormorant Garamond",
+      "category": "serif",
+      "tags": [
+        "luxury",
+        "elegant",
+        "wedding",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "cormorantgaramond",
+      "fontsource_package": "@fontsource/cormorant-garamond",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/cormorant-garamond",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "lora",
+      "family": "Lora",
+      "category": "serif",
+      "tags": [
+        "editorial",
+        "elegant",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "lora",
+      "fontsource_package": "@fontsource/lora",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/lora",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "merriweather",
+      "family": "Merriweather",
+      "category": "serif",
+      "tags": [
+        "readable",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "merriweather",
+      "fontsource_package": "@fontsource/merriweather",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/merriweather",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "librebaskerville",
+      "family": "Libre Baskerville",
+      "category": "serif",
+      "tags": [
+        "classic",
+        "elegant",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "librebaskerville",
+      "fontsource_package": "@fontsource/libre-baskerville",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/libre-baskerville",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "ebgaramond",
+      "family": "EB Garamond",
+      "category": "serif",
+      "tags": [
+        "classic",
+        "literary",
+        "luxury"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "ebgaramond",
+      "fontsource_package": "@fontsource/eb-garamond",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/eb-garamond",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "dmserifdisplay",
+      "family": "DM Serif Display",
+      "category": "serif",
+      "tags": [
+        "luxury",
+        "editorial",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "dmserifdisplay",
+      "fontsource_package": "@fontsource/dm-serif-display",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/dm-serif-display",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bodonimoda",
+      "family": "Bodoni Moda",
+      "category": "serif",
+      "tags": [
+        "fashion",
+        "luxury",
+        "elegant"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bodonimoda",
+      "fontsource_package": "@fontsource/bodoni-moda",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bodoni-moda",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "prata",
+      "family": "Prata",
+      "category": "serif",
+      "tags": [
+        "luxury",
+        "fashion",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "prata",
+      "fontsource_package": "@fontsource/prata",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/prata",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "cinzel",
+      "family": "Cinzel",
+      "category": "serif",
+      "tags": [
+        "classic",
+        "formal",
+        "luxury"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "cinzel",
+      "fontsource_package": "@fontsource/cinzel",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/cinzel",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "crimsontext",
+      "family": "Crimson Text",
+      "category": "serif",
+      "tags": [
+        "literary",
+        "editorial",
+        "classic"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "crimsontext",
+      "fontsource_package": "@fontsource/crimson-text",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/crimson-text",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "sourceserif4",
+      "family": "Source Serif 4",
+      "category": "serif",
+      "tags": [
+        "editorial",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "sourceserif4",
+      "fontsource_package": "@fontsource/source-serif-4",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/source-serif-4",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "spectral",
+      "family": "Spectral",
+      "category": "serif",
+      "tags": [
+        "editorial",
+        "classic",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "spectral",
+      "fontsource_package": "@fontsource/spectral",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/spectral",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "fraunces",
+      "family": "Fraunces",
+      "category": "serif",
+      "tags": [
+        "expressive",
+        "retro",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "fraunces",
+      "fontsource_package": "@fontsource/fraunces",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/fraunces",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "gfsdidot",
+      "family": "GFS Didot",
+      "category": "serif",
+      "tags": [
+        "fashion",
+        "luxury",
+        "elegant"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "gfsdidot",
+      "fontsource_package": "@fontsource/gfs-didot",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/gfs-didot",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "librecaslondisplay",
+      "family": "Libre Caslon Display",
+      "category": "serif",
+      "tags": [
+        "editorial",
+        "luxury",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "librecaslondisplay",
+      "fontsource_package": "@fontsource/libre-caslon-display",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/libre-caslon-display",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "cormorant",
+      "family": "Cormorant",
+      "category": "serif",
+      "tags": [
+        "elegant",
+        "luxury",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "cormorant",
+      "fontsource_package": "@fontsource/cormorant",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/cormorant",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "cardo",
+      "family": "Cardo",
+      "category": "serif",
+      "tags": [
+        "classic",
+        "literary"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "cardo",
+      "fontsource_package": "@fontsource/cardo",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/cardo",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "alegreya",
+      "family": "Alegreya",
+      "category": "serif",
+      "tags": [
+        "literary",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "alegreya",
+      "fontsource_package": "@fontsource/alegreya",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/alegreya",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "alegreyasans",
+      "family": "Alegreya Sans",
+      "category": "sans-serif",
+      "tags": [
+        "humanist",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "alegreyasans",
+      "fontsource_package": "@fontsource/alegreya-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/alegreya-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bitter",
+      "family": "Bitter",
+      "category": "serif",
+      "tags": [
+        "slab",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bitter",
+      "fontsource_package": "@fontsource/bitter",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bitter",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "arvo",
+      "family": "Arvo",
+      "category": "serif",
+      "tags": [
+        "slab",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "arvo",
+      "fontsource_package": "@fontsource/arvo",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/arvo",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "robotoslab",
+      "family": "Roboto Slab",
+      "category": "serif",
+      "tags": [
+        "slab",
+        "modern",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "robotoslab",
+      "fontsource_package": "@fontsource/roboto-slab",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/roboto-slab",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "zillaslab",
+      "family": "Zilla Slab",
+      "category": "serif",
+      "tags": [
+        "slab",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "zillaslab",
+      "fontsource_package": "@fontsource/zilla-slab",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/zilla-slab",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "breeserif",
+      "family": "Bree Serif",
+      "category": "serif",
+      "tags": [
+        "friendly",
+        "slab",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "breeserif",
+      "fontsource_package": "@fontsource/bree-serif",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bree-serif",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "vollkorn",
+      "family": "Vollkorn",
+      "category": "serif",
+      "tags": [
+        "literary",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "vollkorn",
+      "fontsource_package": "@fontsource/vollkorn",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/vollkorn",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "newsreader",
+      "family": "Newsreader",
+      "category": "serif",
+      "tags": [
+        "editorial",
+        "reading",
+        "luxury"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "newsreader",
+      "fontsource_package": "@fontsource/newsreader",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/newsreader",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "literata",
+      "family": "Literata",
+      "category": "serif",
+      "tags": [
+        "literary",
+        "body",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "literata",
+      "fontsource_package": "@fontsource/literata",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/literata",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "youngserif",
+      "family": "Young Serif",
+      "category": "serif",
+      "tags": [
+        "fashion",
+        "editorial",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "youngserif",
+      "fontsource_package": "@fontsource/young-serif",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/young-serif",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "instrumentserif",
+      "family": "Instrument Serif",
+      "category": "serif",
+      "tags": [
+        "editorial",
+        "luxury",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "instrumentserif",
+      "fontsource_package": "@fontsource/instrument-serif",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/instrument-serif",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "anton",
+      "family": "Anton",
+      "category": "display",
+      "tags": [
+        "impact",
+        "poster",
+        "headline",
+        "condensed"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "anton",
+      "fontsource_package": "@fontsource/anton",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/anton",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bebasneue",
+      "family": "Bebas Neue",
+      "category": "display",
+      "tags": [
+        "impact",
+        "condensed",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bebasneue",
+      "fontsource_package": "@fontsource/bebas-neue",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bebas-neue",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "oswald",
+      "family": "Oswald",
+      "category": "display",
+      "tags": [
+        "condensed",
+        "headline",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "oswald",
+      "fontsource_package": "@fontsource/oswald",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/oswald",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "archivoblack",
+      "family": "Archivo Black",
+      "category": "display",
+      "tags": [
+        "heavy",
+        "impact",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "archivoblack",
+      "fontsource_package": "@fontsource/archivo-black",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/archivo-black",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bungee",
+      "family": "Bungee",
+      "category": "display",
+      "tags": [
+        "urban",
+        "street",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bungee",
+      "fontsource_package": "@fontsource/bungee",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bungee",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bungeeshade",
+      "family": "Bungee Shade",
+      "category": "display",
+      "tags": [
+        "decorative",
+        "retro",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bungeeshade",
+      "fontsource_package": "@fontsource/bungee-shade",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bungee-shade",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bowlbyonesc",
+      "family": "Bowlby One SC",
+      "category": "display",
+      "tags": [
+        "heavy",
+        "playful",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bowlbyonesc",
+      "fontsource_package": "@fontsource/bowlby-one-sc",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bowlby-one-sc",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "blackopsone",
+      "family": "Black Ops One",
+      "category": "display",
+      "tags": [
+        "military",
+        "impact",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "blackopsone",
+      "fontsource_package": "@fontsource/black-ops-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/black-ops-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "lilitaone",
+      "family": "Lilita One",
+      "category": "display",
+      "tags": [
+        "playful",
+        "rounded",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "lilitaone",
+      "fontsource_package": "@fontsource/lilita-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/lilita-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "staatliches",
+      "family": "Staatliches",
+      "category": "display",
+      "tags": [
+        "condensed",
+        "poster",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "staatliches",
+      "fontsource_package": "@fontsource/staatliches",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/staatliches",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "teko",
+      "family": "Teko",
+      "category": "display",
+      "tags": [
+        "condensed",
+        "impact",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "teko",
+      "fontsource_package": "@fontsource/teko",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/teko",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "russoone",
+      "family": "Russo One",
+      "category": "display",
+      "tags": [
+        "tech",
+        "impact",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "russoone",
+      "fontsource_package": "@fontsource/russo-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/russo-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "alfaslabone",
+      "family": "Alfa Slab One",
+      "category": "display",
+      "tags": [
+        "slab",
+        "impact",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "alfaslabone",
+      "fontsource_package": "@fontsource/alfa-slab-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/alfa-slab-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "abrilfatface",
+      "family": "Abril Fatface",
+      "category": "display",
+      "tags": [
+        "editorial",
+        "luxury",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "abrilfatface",
+      "fontsource_package": "@fontsource/abril-fatface",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/abril-fatface",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "rammettoone",
+      "family": "Rammetto One",
+      "category": "display",
+      "tags": [
+        "playful",
+        "heavy",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "rammettoone",
+      "fontsource_package": "@fontsource/rammetto-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/rammetto-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "righteous",
+      "family": "Righteous",
+      "category": "display",
+      "tags": [
+        "retro",
+        "geometric",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "righteous",
+      "fontsource_package": "@fontsource/righteous",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/righteous",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "titanone",
+      "family": "Titan One",
+      "category": "display",
+      "tags": [
+        "rounded",
+        "heavy",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "titanone",
+      "fontsource_package": "@fontsource/titan-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/titan-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "fjallaone",
+      "family": "Fjalla One",
+      "category": "display",
+      "tags": [
+        "condensed",
+        "editorial",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "fjallaone",
+      "fontsource_package": "@fontsource/fjalla-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/fjalla-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "passionone",
+      "family": "Passion One",
+      "category": "display",
+      "tags": [
+        "impact",
+        "poster",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "passionone",
+      "fontsource_package": "@fontsource/passion-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/passion-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bowlbyone",
+      "family": "Bowlby One",
+      "category": "display",
+      "tags": [
+        "heavy",
+        "playful",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bowlbyone",
+      "fontsource_package": "@fontsource/bowlby-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bowlby-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "bungeeinline",
+      "family": "Bungee Inline",
+      "category": "display",
+      "tags": [
+        "outlined",
+        "urban",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "bungeeinline",
+      "fontsource_package": "@fontsource/bungee-inline",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/bungee-inline",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "graduate",
+      "family": "Graduate",
+      "category": "display",
+      "tags": [
+        "collegiate",
+        "sport",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "graduate",
+      "fontsource_package": "@fontsource/graduate",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/graduate",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "blackhansans",
+      "family": "Black Han Sans",
+      "category": "display",
+      "tags": [
+        "heavy",
+        "poster",
+        "impact"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "blackhansans",
+      "fontsource_package": "@fontsource/black-han-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/black-han-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "paytoneone",
+      "family": "Paytone One",
+      "category": "display",
+      "tags": [
+        "bold",
+        "retro",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "paytoneone",
+      "fontsource_package": "@fontsource/paytone-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/paytone-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "changaone",
+      "family": "Changa One",
+      "category": "display",
+      "tags": [
+        "retro",
+        "impact",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "changaone",
+      "fontsource_package": "@fontsource/changa-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/changa-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "fugazone",
+      "family": "Fugaz One",
+      "category": "display",
+      "tags": [
+        "italic",
+        "sport",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "fugazone",
+      "fontsource_package": "@fontsource/fugaz-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/fugaz-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "racingsansone",
+      "family": "Racing Sans One",
+      "category": "display",
+      "tags": [
+        "sport",
+        "italic",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "racingsansone",
+      "fontsource_package": "@fontsource/racing-sans-one",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/racing-sans-one",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "michroma",
+      "family": "Michroma",
+      "category": "display",
+      "tags": [
+        "futuristic",
+        "tech",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "michroma",
+      "fontsource_package": "@fontsource/michroma",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/michroma",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "greatvibes",
+      "family": "Great Vibes",
+      "category": "script",
+      "tags": [
+        "wedding",
+        "luxury",
+        "signature",
+        "formal"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "greatvibes",
+      "fontsource_package": "@fontsource/great-vibes",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/great-vibes",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "dancingscript",
+      "family": "Dancing Script",
+      "category": "script",
+      "tags": [
+        "friendly",
+        "handwritten",
+        "celebration"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "dancingscript",
+      "fontsource_package": "@fontsource/dancing-script",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/dancing-script",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "pacifico",
+      "family": "Pacifico",
+      "category": "script",
+      "tags": [
+        "retro",
+        "playful",
+        "casual"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "pacifico",
+      "fontsource_package": "@fontsource/pacifico",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/pacifico",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "allura",
+      "family": "Allura",
+      "category": "script",
+      "tags": [
+        "elegant",
+        "signature",
+        "wedding"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "allura",
+      "fontsource_package": "@fontsource/allura",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/allura",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "satisfy",
+      "family": "Satisfy",
+      "category": "script",
+      "tags": [
+        "handwritten",
+        "casual",
+        "retro"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "satisfy",
+      "fontsource_package": "@fontsource/satisfy",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/satisfy",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "sacramento",
+      "family": "Sacramento",
+      "category": "script",
+      "tags": [
+        "signature",
+        "elegant",
+        "wedding"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "sacramento",
+      "fontsource_package": "@fontsource/sacramento",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/sacramento",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "parisienne",
+      "family": "Parisienne",
+      "category": "script",
+      "tags": [
+        "luxury",
+        "formal",
+        "wedding"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "parisienne",
+      "fontsource_package": "@fontsource/parisienne",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/parisienne",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "alexbrush",
+      "family": "Alex Brush",
+      "category": "script",
+      "tags": [
+        "formal",
+        "signature",
+        "wedding"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "alexbrush",
+      "fontsource_package": "@fontsource/alex-brush",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/alex-brush",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "yellowtail",
+      "family": "Yellowtail",
+      "category": "script",
+      "tags": [
+        "retro",
+        "brush",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "yellowtail",
+      "fontsource_package": "@fontsource/yellowtail",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/yellowtail",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "lobster",
+      "family": "Lobster",
+      "category": "script",
+      "tags": [
+        "retro",
+        "bold",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "lobster",
+      "fontsource_package": "@fontsource/lobster",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/lobster",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "caveat",
+      "family": "Caveat",
+      "category": "handwriting",
+      "tags": [
+        "handwritten",
+        "casual",
+        "personal"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "caveat",
+      "fontsource_package": "@fontsource/caveat",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/caveat",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "kaushanscript",
+      "family": "Kaushan Script",
+      "category": "script",
+      "tags": [
+        "brush",
+        "expressive",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "kaushanscript",
+      "fontsource_package": "@fontsource/kaushan-script",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/kaushan-script",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "cookie",
+      "family": "Cookie",
+      "category": "script",
+      "tags": [
+        "friendly",
+        "retro",
+        "celebration"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "cookie",
+      "fontsource_package": "@fontsource/cookie",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/cookie",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "pinyonscript",
+      "family": "Pinyon Script",
+      "category": "script",
+      "tags": [
+        "formal",
+        "wedding",
+        "luxury"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "pinyonscript",
+      "fontsource_package": "@fontsource/pinyon-script",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/pinyon-script",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "mrdafoe",
+      "family": "Mr Dafoe",
+      "category": "script",
+      "tags": [
+        "signature",
+        "brush",
+        "expressive"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "mrdafoe",
+      "fontsource_package": "@fontsource/mr-dafoe",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/mr-dafoe",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "berkshireswash",
+      "family": "Berkshire Swash",
+      "category": "script",
+      "tags": [
+        "decorative",
+        "formal",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "berkshireswash",
+      "fontsource_package": "@fontsource/berkshire-swash",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/berkshire-swash",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "tangerine",
+      "family": "Tangerine",
+      "category": "script",
+      "tags": [
+        "elegant",
+        "calligraphy",
+        "wedding"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "tangerine",
+      "fontsource_package": "@fontsource/tangerine",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/tangerine",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "marckscript",
+      "family": "Marck Script",
+      "category": "script",
+      "tags": [
+        "handwritten",
+        "casual"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "marckscript",
+      "fontsource_package": "@fontsource/marck-script",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/marck-script",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "kalam",
+      "family": "Kalam",
+      "category": "handwriting",
+      "tags": [
+        "handwritten",
+        "casual",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "kalam",
+      "fontsource_package": "@fontsource/kalam",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/kalam",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "patrickhand",
+      "family": "Patrick Hand",
+      "category": "handwriting",
+      "tags": [
+        "handwritten",
+        "friendly",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "patrickhand",
+      "fontsource_package": "@fontsource/patrick-hand",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/patrick-hand",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "jetbrainsmono",
+      "family": "JetBrains Mono",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "code",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "jetbrainsmono",
+      "fontsource_package": "@fontsource/jetbrains-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/jetbrains-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "firacode",
+      "family": "Fira Code",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "firacode",
+      "fontsource_package": "@fontsource/fira-code",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/fira-code",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "sourcecodepro",
+      "family": "Source Code Pro",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "sourcecodepro",
+      "fontsource_package": "@fontsource/source-code-pro",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/source-code-pro",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "ibmplexmono",
+      "family": "IBM Plex Mono",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "corporate",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "ibmplexmono",
+      "fontsource_package": "@fontsource/ibm-plex-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/ibm-plex-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "robotomono",
+      "family": "Roboto Mono",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "modern",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "robotomono",
+      "fontsource_package": "@fontsource/roboto-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/roboto-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "spacemono",
+      "family": "Space Mono",
+      "category": "monospace",
+      "tags": [
+        "retro",
+        "technical",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "spacemono",
+      "fontsource_package": "@fontsource/space-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/space-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "inconsolata",
+      "family": "Inconsolata",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "inconsolata",
+      "fontsource_package": "@fontsource/inconsolata",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/inconsolata",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "dmmono",
+      "family": "DM Mono",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "editorial"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "dmmono",
+      "fontsource_package": "@fontsource/dm-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/dm-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "ubuntumono",
+      "family": "Ubuntu Mono",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "ubuntumono",
+      "fontsource_package": "@fontsource/ubuntu-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/ubuntu-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "anonymouspro",
+      "family": "Anonymous Pro",
+      "category": "monospace",
+      "tags": [
+        "technical",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "anonymouspro",
+      "fontsource_package": "@fontsource/anonymous-pro",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/anonymous-pro",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "notoserif",
+      "family": "Noto Serif",
+      "category": "serif",
+      "tags": [
+        "multilingual",
+        "editorial",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "notoserif",
+      "fontsource_package": "@fontsource/noto-serif",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/noto-serif",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "notosansdisplay",
+      "family": "Noto Sans Display",
+      "category": "sans-serif",
+      "tags": [
+        "multilingual",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "notosansdisplay",
+      "fontsource_package": "@fontsource/noto-sans-display",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/noto-sans-display",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "notoserifdisplay",
+      "family": "Noto Serif Display",
+      "category": "serif",
+      "tags": [
+        "multilingual",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "notoserifdisplay",
+      "fontsource_package": "@fontsource/noto-serif-display",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/noto-serif-display",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "azeretmono",
+      "family": "Azeret Mono",
+      "category": "monospace",
+      "tags": [
+        "tech",
+        "futuristic",
+        "code"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "azeretmono",
+      "fontsource_package": "@fontsource/azeret-mono",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/azeret-mono",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "chivo",
+      "family": "Chivo",
+      "category": "sans-serif",
+      "tags": [
+        "grotesque",
+        "headline",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "chivo",
+      "fontsource_package": "@fontsource/chivo",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/chivo",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "archivonarrow",
+      "family": "Archivo Narrow",
+      "category": "sans-serif",
+      "tags": [
+        "condensed",
+        "headline"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "archivonarrow",
+      "fontsource_package": "@fontsource/archivo-narrow",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/archivo-narrow",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "sairacondensed",
+      "family": "Saira Condensed",
+      "category": "sans-serif",
+      "tags": [
+        "condensed",
+        "impact",
+        "poster"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "sairacondensed",
+      "fontsource_package": "@fontsource/saira-condensed",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/saira-condensed",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "encodesans",
+      "family": "Encode Sans",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "readable",
+        "body"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "encodesans",
+      "fontsource_package": "@fontsource/encode-sans",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/encode-sans",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "commissioner",
+      "family": "Commissioner",
+      "category": "sans-serif",
+      "tags": [
+        "modern",
+        "corporate",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "commissioner",
+      "fontsource_package": "@fontsource/commissioner",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/commissioner",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "gabarito",
+      "family": "Gabarito",
+      "category": "sans-serif",
+      "tags": [
+        "friendly",
+        "modern",
+        "display"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "gabarito",
+      "fontsource_package": "@fontsource/gabarito",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/gabarito",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "mplus1p",
+      "family": "M PLUS 1p",
+      "category": "sans-serif",
+      "tags": [
+        "japanese",
+        "modern"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "mplus1p",
+      "fontsource_package": "@fontsource/m-plus-1p",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/m-plus-1p",
+      "fontsource_status": "unverified"
+    },
+    {
+      "id": "mplusrounded1c",
+      "family": "M PLUS Rounded 1c",
+      "category": "sans-serif",
+      "tags": [
+        "rounded",
+        "japanese"
+      ],
+      "providers": [
+        "google_fonts"
+      ],
+      "google_fonts_slug": "mplusrounded1c",
+      "fontsource_package": "@fontsource/m-plus-rounded-1c",
+      "license": "verify_at_download",
+      "license_status": "not_yet_resolved",
+      "availability": "catalog_only",
+      "variants": [],
+      "custom": false,
+      "fontsource_package_candidate": "@fontsource/m-plus-rounded-1c",
+      "fontsource_status": "unverified"
+    }
+  ]
+}
