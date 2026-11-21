@@ -10,7 +10,7 @@ from psd2plp_mcp.plp_core import inspect_plp, validate_plp  # noqa: E402
 from psd2plp_mcp.plp_generator import generate_plp  # noqa: E402
 from psd2plp_mcp.plp_engine import roundtrip_plp  # noqa: E402
 from psd2plp_mcp.font_engine import (  # noqa: E402
-    list_fonts, get_font, recommend_fonts, import_custom_font, download_google_font, sync_fontsource_catalog,
+    list_fonts, get_font, recommend_fonts, import_custom_font, download_font, sync_fontsource_catalog,
 )
 
 _ROOT = HERE.parent.parent
@@ -43,7 +43,7 @@ TEXT_OBJECT_SCHEMA = {
 TOOLS = [
     {
         "name": "generate_plp",
-        "description": "Generate an editable PixelLab PLP project with native text and primitive shapes. Optional font_family selections are written to a companion .fonts.json manifest; the PLP's native font field is not changed until its exact PixelLab schema is verified.",
+        "description": "Generate an editable PixelLab PLP project with native text and primitive shapes. Downloaded TTF variants selected by font_family are embedded as PLP resources; verify opening and saving in the target PixelLab app before relying on native font compatibility.",
         "inputSchema": {"type": "object", "required": ["project_name", "width", "height", "objects"], "properties": {
             "project_name": {"type": "string"}, "width": {"type": "integer", "minimum": 1, "maximum": 12000},
             "height": {"type": "integer", "minimum": 1, "maximum": 12000},
@@ -56,8 +56,8 @@ TOOLS = [
     {"name": "search_fonts", "description": "Search the 150-family starter catalog and locally imported fonts by name, category or style tags.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "category": {"type": "string", "enum": ["sans-serif", "serif", "display", "script", "handwriting", "monospace", "custom"]}, "limit": {"type": "integer", "minimum": 1, "maximum": 100}, "include_custom": {"type": "boolean"}}}},
     {"name": "recommend_fonts", "description": "Recommend type families for a design style and role (headline, title, body, paragraph).", "inputSchema": {"type": "object", "required": ["style"], "properties": {"style": {"type": "string"}, "usage": {"type": "string"}, "language": {"type": "string"}, "limit": {"type": "integer", "minimum": 1, "maximum": 20}}}},
     {"name": "get_font_details", "description": "Return metadata, provider and downloaded/local variants for one font family.", "inputSchema": {"type": "object", "required": ["family_id"], "properties": {"family_id": {"type": "string"}}}},
-    {"name": "sync_fontsource_catalog", "description": "Synchronize Fontsource family, weight, style, subset, category and version metadata for the starter catalog. This does not download font binaries.", "inputSchema": {"type": "object", "properties": {}}},
-    {"name": "download_font", "description": "Download one TTF variant from the official Google Fonts repository and retain its license file. The family must exist in the starter catalog.", "inputSchema": {"type": "object", "required": ["family_id"], "properties": {"family_id": {"type": "string"}, "weight": {"type": "integer", "minimum": 1, "maximum": 1000}, "style": {"type": "string", "enum": ["normal", "italic"]}}}},
+    {"name": "sync_fontsource_catalog", "description": "Synchronize Fontsource family, weight, style, subset, category and version metadata for the starter catalog. Use download_font with provider=fontsource to fetch a selected TTF face.", "inputSchema": {"type": "object", "properties": {}}},
+    {"name": "download_font", "description": "Download a TTF variant from Fontsource or Google Fonts and store it in the local font library. Run sync_fontsource_catalog first when using Fontsource.", "inputSchema": {"type": "object", "required": ["family_id"], "properties": {"family_id": {"type": "string"}, "weight": {"type": "integer", "minimum": 1, "maximum": 1000}, "style": {"type": "string", "enum": ["normal", "italic"]}, "provider": {"type": "string", "enum": ["auto", "fontsource", "google_fonts"]}, "subset": {"type": "string", "default": "latin"}}}},
     {"name": "import_custom_font", "description": "Import a user-owned or properly licensed TTF/OTF file placed in input/fonts/. Requires an explicit license declaration.", "inputSchema": {"type": "object", "required": ["filename", "license_name"], "properties": {"filename": {"type": "string"}, "license_name": {"type": "string"}, "family_name": {"type": "string"}, "designer": {"type": "string"}, "license_url": {"type": "string"}, "weight": {"type": "integer", "minimum": 1, "maximum": 1000}, "style": {"type": "string", "enum": ["normal", "italic", "oblique"]}}}}
 ]
 
@@ -104,7 +104,7 @@ def call_tool(name, args):
     if name == "recommend_fonts": return result_text(recommend_fonts(args["style"], args.get("usage", "headline"), args.get("language", "en"), args.get("limit", 8)))
     if name == "get_font_details": return result_text(get_font(args["family_id"]))
     if name == "sync_fontsource_catalog": return result_text(sync_fontsource_catalog())
-    if name == "download_font": return result_text(download_google_font(args["family_id"], args.get("weight", 400), args.get("style", "normal")))
+    if name == "download_font": return result_text(download_font(args["family_id"], args.get("weight", 400), args.get("style", "normal"), args.get("provider", "auto"), args.get("subset", "latin")))
     if name == "import_custom_font":
         return result_text(import_custom_font(args["filename"], args["license_name"], args.get("family_name", ""),
             args.get("designer", ""), args.get("license_url", ""), args.get("weight", 0), args.get("style", "normal")))
