@@ -142,3 +142,60 @@ def test_builder_embeds_downloaded_ttf_as_plp_resource(tmp_path):
 
         assert f"res/{resource_name}" in archive.namelist()
         assert archive.read(f"res/{resource_name}") == font_path.read_bytes()
+
+
+
+def test_sync_fontsource_catalog_merges_full_directory(monkeypatch):
+    catalog = {
+        "families": [
+            {
+                "id": "roboto",
+                "family": "Roboto",
+                "category": "sans-serif",
+                "tags": ["clean"],
+                "providers": ["google_fonts"],
+                "variants": [],
+                "custom": False,
+            }
+        ]
+    }
+    saved = []
+    records = [
+        {
+            "id": "roboto",
+            "family": "Roboto",
+            "category": "sans-serif",
+            "weights": [400, 700],
+            "styles": ["normal", "italic"],
+            "subsets": ["latin"],
+            "variable": False,
+            "version": "v30",
+            "type": "google",
+            "defSubset": "latin",
+        },
+        {
+            "id": "some-open-font",
+            "family": "Some Open Font",
+            "category": "display",
+            "weights": [400],
+            "styles": ["normal"],
+            "subsets": ["latin"],
+            "variable": False,
+            "version": "v1",
+            "type": "local",
+            "defSubset": "latin",
+        },
+    ]
+    monkeypatch.setattr(font_engine, "_fontsource_get_all_fonts", lambda: records)
+    monkeypatch.setattr(font_engine, "_load_catalog", lambda: catalog)
+    monkeypatch.setattr(font_engine, "_save_catalog", lambda value: saved.append(value.copy()))
+
+    result = font_engine.sync_fontsource_catalog()
+
+    assert result["added_count"] == 1
+    assert result["updated_count"] == 1
+    assert catalog["families"][0]["fontsource_id"] == "roboto"
+    added = next(f for f in catalog["families"] if f["family"] == "Some Open Font")
+    assert added["fontsource_id"] == "some-open-font"
+    assert added["availability"] == "catalog_only"
+    assert saved
