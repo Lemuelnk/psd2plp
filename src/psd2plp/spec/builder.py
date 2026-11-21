@@ -65,9 +65,9 @@ def _hex_to_argb(hex_color: str) -> int:
     return -1
 
 
-def _measure_text_width_px(text: str, font_name: str, size_px: float) -> float | None:
+def _measure_text_width_px(text: str, font_name: str, size_px: float, font_path: str | None = None) -> float | None:
     """Mesure la vraie largeur du texte via PIL, en pixels canvas."""
-    ttf = FONTS_DIR / f"{font_name}.ttf"
+    ttf = Path(font_path) if font_path else FONTS_DIR / f"{font_name}.ttf"
     if not ttf.exists():
         return None
     try:
@@ -88,7 +88,7 @@ def _build_text(o: SpecText, container_w: int, container_h: int,
     size_px = o.size_px
     final_width = None
     if max_width and max_width > 0 and o.text:
-        measured = _measure_text_width_px(o.text, o.font, size_px)
+        measured = _measure_text_width_px(o.text, o.font, size_px, o.font_path)
         if measured is None:
             # Fallback heuristique si PIL ne peut pas lire la font
             n_chars = len(o.text)
@@ -99,7 +99,7 @@ def _build_text(o: SpecText, container_w: int, container_h: int,
         else:
             final_width = measured
     # Font
-    font_res = add_font(o.font)
+    font_res = add_font(o.font, o.font_path)
     # Size : size_px est une hauteur de capitale en px canvas -> em
     font_size_em = size_px / CAP_RATIO
     # Position X : si align=center, on recentre sur le canvas
@@ -242,16 +242,17 @@ def plp_from_spec(spec: Spec, plp_name: str = "untitled") -> PlpProject:
         proj.resources.append(PlpResource(name=name, kind="png", data=raw))
         return name
 
-    def add_font(font_name: str) -> str | None:
-        if font_name in used_fonts:
-            return used_fonts[font_name]
-        ttf = FONTS_DIR / f"{font_name}.ttf"
-        if not ttf.exists():
+    def add_font(font_name: str, font_path: str | None = None) -> str | None:
+        cache_key = str(Path(font_path).resolve()) if font_path else font_name
+        if cache_key in used_fonts:
+            return used_fonts[cache_key]
+        ttf = Path(font_path) if font_path else FONTS_DIR / f"{font_name}.ttf"
+        if not ttf.is_file() or ttf.suffix.lower() != ".ttf":
             return None
         name = f"r{len(used_res):04d}"
         used_res.add(name)
         proj.resources.append(PlpResource(name=name, kind="ttf", data=ttf.read_bytes()))
-        used_fonts[font_name] = name
+        used_fonts[cache_key] = name
         return name
 
     margin_px = spec.canvas.margin
@@ -328,8 +329,8 @@ def _thumb_draw_shape(draw, o, ratio):
 
 def _thumb_draw_text(img, o, ratio):
     from PIL import ImageDraw, ImageFont
-    ttf = FONTS_DIR / f"{o.font}.ttf"
-    if not ttf.exists():
+    ttf = Path(o.font_path) if o.font_path else FONTS_DIR / f"{o.font}.ttf"
+    if not ttf.exists() or ttf.suffix.lower() != ".ttf":
         return
     font_size_em = (o.size_px / CAP_RATIO) * ratio
     if font_size_em < 1:
