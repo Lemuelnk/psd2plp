@@ -1,7 +1,7 @@
 # LNK Studio — PixelLab AI Generator Font Engine
 
 **Target release:** 0.2.2  
-**Status:** Catalog, recommendation, provider metadata sync, TTF/OTF import and Google Fonts TTF download implemented. Native PLP font assignment remains blocked on a verified PixelLab reference file.
+**Status:** Catalog, recommendation, Fontsource metadata sync, Fontsource/Google Fonts TTF download, custom TTF/OTF import and downloaded-TTF resource embedding implemented. Actual PixelLab open/save compatibility still requires a device test.
 
 ## 1. Goals
 
@@ -33,7 +33,8 @@ Font Catalog API
     │
     ▼
 Font Asset Manager
-    ├── Google Fonts TTF download + license file
+    ├── Fontsource API + jsDelivr TTF download
+    ├── Google Fonts repository TTF download + license file
     ├── custom TTF/OTF import + SHA-256
     └── variant and local-availability tracking
     │
@@ -52,10 +53,10 @@ PLP Writer → editable .plp
 | Source | Responsibility | Current implementation |
 |---|---|---|
 | Google Fonts repository | TTF binary assets and each family's license file | `download_font` downloads a selected TTF variant and license text |
-| Fontsource API | Family IDs, family names, weights, styles, subsets, categories, variable status and version metadata | `sync_fontsource_catalog` refreshes and records metadata; no binary download |
+| Fontsource API/CDN | Family IDs, weights, styles, subsets, versions and published TTF variants | `sync_fontsource_catalog` refreshes metadata; `download_font(provider=fontsource)` fetches a selected TTF face |
 | LNK custom library | User-provided proprietary or separately licensed typefaces | `import_custom_font` validates and stores TTF/OTF files locally |
 
-Fontsource package IDs are only marked verified after a successful metadata sync. The package candidate alone is not proof that a package or variant exists. Google Fonts remains the TTF asset source in this release.
+Fontsource package IDs are only marked verified after a successful metadata sync. The package candidate alone is not proof that a package or variant exists. Fontsource can now supply TTF assets directly through its documented API/CDN. Google Fonts remains available as a second TTF source.
 
 ## 4. Catalog schema
 
@@ -78,7 +79,7 @@ Each family record contains:
 | `recommend_fonts` | Rank font families for a design direction and text role | `style`, `usage`, `language`, `limit` |
 | `get_font_details` | Read one family and its variants/provider/license state | `family_id` |
 | `sync_fontsource_catalog` | Refresh Fontsource metadata | no required arguments |
-| `download_font` | Download one Google Fonts TTF variant and its license | `family_id`, `weight`, `style` |
+| `download_font` | Download one TTF variant from Fontsource or Google Fonts | `family_id`, `weight`, `style`, `provider`, `subset` |
 | `import_custom_font` | Import a custom TTF/OTF from `input/fonts/` | `filename`, `license_name`, optional family/designer/weight/style |
 | `generate_plp` | Generate a PLP and optionally record intended font selections | per-text `font_family`, `font_weight`, `font_style` |
 
@@ -91,7 +92,7 @@ font_library/
 ├── downloaded/<google-slug>/    # Google Fonts TTF + license file
 └── custom/<family-slug>/        # imported TTF/OTF files
 
-input/fonts/                     # import staging area
+input/fonts/                     # import staging area (shared with MCP server)
 output/<project>.plp
 output/<project>.plp.fonts.json  # intended font selections, not embedded in PLP
 ```
@@ -103,12 +104,10 @@ The inspected LNK Studio writer currently emits an empty `textTextFont` object. 
 Therefore:
 
 1. Keep the PLP text objects native and editable.
-2. Do not add guessed keys to `textTextFont`.
-3. Record requested family/weight/style in a companion JSON manifest.
-4. Before native assignment, create a reference project in the target PixelLab version using a downloaded/custom font.
-5. Compare `data.plab`, object-level font fields, and all `res/` entries against a default-font project.
-6. Implement a versioned adapter only after the exact structure and missing-font behavior are understood.
-7. Validate by opening, saving, closing and reopening the generated PLP in PixelLab on the target device.
+2. A downloaded TTF is now embedded in `res/` and referenced through the writer's `textTextFont.interval1.textsIntervalsFont` resource path.
+3. This is the writer's current serialization contract, not yet proof of compatibility with every PixelLab version.
+4. Compare a generated file with a PixelLab-generated reference project containing a custom font.
+5. Validate by opening, saving, closing and reopening the generated PLP in PixelLab on the target device.
 
 The sidecar is an implementation bridge, not a claim that the PLP already uses the chosen font.
 
@@ -138,10 +137,10 @@ Automated tests cover:
 
 Still required:
 
-- Live Fontsource API sync in the deployed runtime
+- Live Fontsource API sync and TTF download in the deployed runtime
 - Live Google Fonts TTF download in the deployed runtime
 - PixelLab open/save/reopen test for generated PLP
-- Native font binding implementation from a real PixelLab reference file
+- Confirmation of the font resource path against a native PixelLab reference file
 - Android test for missing fonts and family fallback
 
 ## 10. Mobile/cloud deployment boundary
