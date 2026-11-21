@@ -1,42 +1,101 @@
 # psd2plp
 
-Convertisseur PSD → PLP (format de projet PixelLab) et outils SVG ↔ PLP.
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 
-> État : pipeline PSD → PLP fonctionnel. SVG ↔ PLP en cours de conception.
+Convertisseur **PSD / SVG / Spec JSON** vers **PLP** (format de projet
+PixelLab), avec serveur **MCP** pour ChatGPT et Claude, gestion de
+polices, et apps web/mobile (en préparation).
+
+## Ce que le projet fait
+
+| Source | Moteur | Sortie |
+|---|---|---|
+| `.psd` (Photoshop) | `psd2plp.psd` + `psd2plp.mapping` | `.plp` éditable |
+| `.svg` (vectoriel) | `psd2plp.svg` | `.plp` (formes natives + raster) |
+| `.json` (spec) | `psd2plp.spec` | `.plp` (text, shapes, images) |
+| prompt (LLM) | `psd2plp_mcp` + skill | `.plp` (via generate_plp) |
+
+Le PLP produit est **éditable dans PixelLab** : textes modifiables
+(fonts embarquées), formes natives (`rect`, `oval`, `tri`),
+images remplaçables.
 
 ## Quick start
 
-    pip install psd-tools Pillow
-    python -m psd2plp.cli convert mon_fichier.psd -o output/mon_projet.plp
+    pip install psd2plp
+    pip install "psd2plp[mcp]"
 
-## Documentation
-
-- docs/SETUP.md — installer sur Termux / Linux
-- docs/PLP_FORMAT.md — spécification du format PLP
-- docs/COMMANDS.md — commandes CLI, git, tests
-- docs/DECISIONS.md — journal des choix techniques
-- docs/LIMITS.md — contraintes et fonctionnalités partielles
-- docs/SPEC.md — schéma JSON pour générer un PLP sans code
-- docs/WORKFLOW.md — arborescence, chemins, workflow quotidien
+    psd2plp convert mon.psd -o output/mon.plp
+    psd2plp convert mon.svg -o output/mon.plp
+    psd2plp from-spec examples/specs/poster_demo.json -o output/poster.plp
+    psd2plp-mcp
 
 ## Structure
 
-    src/psd2plp/
-      cli.py               point d'entrée CLI
-      convert.py           orchestration PSD → PLP
-      psd/                 lecture PSD (psd-tools)
-        reader.py
-        layers.py
-        text.py
-        effects.py
-      mapping/             PSD → PlpProject
-        psd_to_plp.py
-      pixellab/            modèle + reader/writer PLP
-        model.py
-        reader.py
-        writer.py
-      svg/                 SVG ↔ PLP (WIP)
+    src/psd2plp/                Moteur de conversion
+      psd/                      Lecture PSD (psd-tools)
+      svg/                      Lecture SVG (formes natives + raster)
+      spec/                     Spec JSON -> PlpProject
+      mapping/                  PSD -> PlpProject
+      pixellab/                 Modele + reader/writer PLP
+      config.py                 Chemins centralises (env vars)
+      cli.py                    CLI : inspect, convert, from-spec
+
+    src/psd2plp_mcp/            Serveur MCP (optionnel, extra [mcp])
+      server.py                 Point d'entree stdio JSON-RPC
+      plp_generator.py          Adaptateur vers psd2plp.spec.builder
+      plp_engine.py             Roundtrip lossless d'un PLP existant
+      plp_core.py               inspect_plp, validate_plp (legacy)
+      font_engine.py            Catalogue 150 familles + download
+
+    plugins/                    Configurations clients
+      chatgpt/                  Manifeste plugin ChatGPT + MCP
+      claude/                   Config MCP Claude
+      skills/prompt-to-plp/     Skill pour LLM
+
+    media/                      Assets versionnes (pas de code)
+      fonts/catalog.seed.json   Catalogue de polices
+      examples/                 Exemples visuels
+
+    apps/                       UIs (migration future)
+      pwa/                      psd2plpG (placeholder)
+      android-native/           psd2plp-app (placeholder)
+
+    data/                       Donnees locales (gitignore)
+      fonts/downloaded/         TTF telecharges
+      fonts/custom/             TTF custom importes
+      examples/, output/        Symlinks vers psd2plp_data/
+
+## Documentation
+
+- [SETUP.md](docs/SETUP.md) — installation Termux / Linux / macOS
+- [PLP_FORMAT.md](docs/PLP_FORMAT.md) — specification du format PLP
+  (structure ZIP, data.plab, container 708, ARGB, qUDmYrz)
+- [SPEC.md](docs/SPEC.md) — schema JSON pour from-spec
+- [COMMANDS.md](docs/COMMANDS.md) — CLI, tests, deploiement
+- [WORKFLOW.md](docs/WORKFLOW.md) — arborescence + workflow quotidien
+- [DECISIONS.md](docs/DECISIONS.md) — journal des choix techniques
+- [LIMITS.md](docs/LIMITS.md) — contraintes connues
+- [FONT_ENGINE.md](docs/FONT_ENGINE.md) — moteur de polices
+- [PLP_ENGINE.md](docs/PLP_ENGINE.md) — roundtrip lossless
+- [HANDOFF.md](docs/HANDOFF.md) — pour continuer le projet sans aide
+
+## Dependances
+
+Moteur (installe automatiquement) :
+
+- psd-tools (MIT) — lecture PSD
+- Pillow (HPND) — images
+- scikit-image (BSD-3) — compositing PSD
+- cairosvg (LGPL-3) — rasterisation SVG
+
+Serveur MCP : aucune dependance supplementaire (stdlib only).
 
 ## Licence
 
-Privé.
+Apache 2.0 — voir [LICENSE](LICENSE).
+
+## Remerciements
+
+psd-tools et la communaute PixelLab pour les samples de reference
+qui ont permis de reverse-engineer le format .plp.
