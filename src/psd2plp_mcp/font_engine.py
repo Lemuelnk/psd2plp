@@ -181,8 +181,11 @@ def sync_fontsource_catalog() -> dict:
         for family in families if family.get("fontsource_id")
     }
     by_name = {
-        re.sub(r"[^a-z0-9]+", "", family.get("family", "").casefold()): family
-        for family in families if family.get("family")
+        normalized: family
+        for family in families
+        if family.get("family") and not family.get("custom")
+        for normalized in [re.sub(r"[^a-z0-9]+", "", family.get("family", "").casefold())]
+        if normalized
     }
     added, updated, skipped = [], [], []
     for record in records:
@@ -216,13 +219,16 @@ def sync_fontsource_catalog() -> dict:
             }
             families.append(family)
             added.append(family_name)
-            by_name[normalized] = family
+            if normalized:
+                by_name[normalized] = family
         else:
             updated.append(family_name)
 
+        by_provider_id[font_id] = family
         family["fontsource_id"] = font_id
         family["fontsource_status"] = "verified"
-        family["fontsource_package_candidate"] = f"@fontsource/{font_id}"
+        package_scope = "@fontsource-variable" if record.get("variable") else "@fontsource"
+        family["fontsource_package_candidate"] = f"{package_scope}/{font_id}"
         family["fontsource_weights"] = record.get("weights", [])
         family["fontsource_styles"] = record.get("styles", [])
         family["fontsource_subsets"] = record.get("subsets", [])
@@ -232,12 +238,18 @@ def sync_fontsource_catalog() -> dict:
         family["fontsource_version"] = record.get("version")
         family["fontsource_last_modified"] = record.get("lastModified")
         family["fontsource_default_subset"] = record.get("defSubset")
-        providers = family.setdefault("providers", [])
+        providers = family.get("providers")
+        if not isinstance(providers, list):
+            providers = []
+            family["providers"] = providers
         if "fontsource" not in providers:
             providers.append("fontsource")
         if not family.get("category"):
             family["category"] = record.get("category") or "sans-serif"
-        tags = family.setdefault("tags", [])
+        tags = family.get("tags")
+        if not isinstance(tags, list):
+            tags = []
+            family["tags"] = tags
         category = record.get("category")
         if category and category not in tags:
             tags.append(category)
