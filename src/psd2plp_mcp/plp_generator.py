@@ -24,6 +24,7 @@ from psd2plp.spec.schema import (
     Spec, SpecCanvas, SpecText, SpecShape, SpecImage,
 )
 from psd2plp.pixellab.writer import write_plp as _psd2plp_write
+from psd2plp_mcp.font_engine import resolve_font_file
 
 
 # --- Conversion couleurs ---
@@ -56,17 +57,31 @@ def _convert_text(obj: dict) -> SpecText:
     # psd2plp : size_px = cap-height en pixels canvas
     # Le plugin fournit font_size qui est probablement la taille em
     # → on assume cap_ratio = 0.7 (Montserrat)
-    raw_size = float(obj.get("font_size", obj.get("size_px", 40)))
-    size_px = raw_size * 0.7  # em -> cap-height
+    raw_size = float(obj.get("text_size", obj.get("font_size", obj.get("size_px", 40))))
+    size_px = raw_size * 0.7  # em -> cap-height (existing generator unit conversion)
 
-    font = obj.get("font_family") or obj.get("font") or "Montserrat-Regular"
-    # Normalise : le catalogue du plugin peut fournir "Montserrat" sans
-    # le suffixe de poids. On garde tel quel si déjà dans KNOWN_FONTS.
-    if "." in font or "/" in font:
+    requested_family = obj.get("font_family")
+    font_weight = int(obj.get("font_weight", 400))
+    font_style = obj.get("font_style", "normal")
+    font_path = None
+    font = obj.get("font") or "Montserrat-Regular"
+    bundled_faces = {
+        "Montserrat-Regular", "Montserrat-SemiBold", "Montserrat-Bold",
+        "Montserrat-ExtraBold", "MontserratAlternates-ExtraBold",
+        "OpenSans-Regular", "OpenSans-SemiBold",
+    }
+    if requested_family:
+        if str(requested_family) in bundled_faces:
+            font = str(requested_family)
+        else:
+            try:
+                resolved = resolve_font_file(str(requested_family), font_weight, font_style)
+            except (KeyError, FileNotFoundError) as exc:
+                raise ValueError(str(exc)) from exc
+            font = str(requested_family)
+            font_path = str(resolved["path"])
+    elif "." in font or "/" in font:
         font = font.split("/")[-1].split(".")[0]
-    # Si c'est juste "Montserrat" sans poids, on prend Regular
-    if not any(font.startswith(f) for f in ("Montserrat", "OpenSans")):
-        font = "Montserrat-Regular"
 
     align = obj.get("align") or obj.get("text_align") or "left"
     if align in ("start",):
@@ -82,6 +97,7 @@ def _convert_text(obj: dict) -> SpecText:
         y=float(obj.get("y", 0)),
         size_px=size_px,
         font=font,
+        font_path=font_path,
         color=_normalize_hex(obj.get("text_color", obj.get("color", "#000000"))),
         align=align,
         opacity=int(obj.get("opacity", 100)),
