@@ -36,7 +36,7 @@ TEXT_OBJECT_SCHEMA = {
         "locked": {"type": "boolean"}, "raw_properties": {"type": "object"},
         "font_family": {"type": "string", "description": "Catalog family ID/name. Download its TTF face with download_font before generation; the selected face is embedded as a PLP resource."},
         "font_weight": {"type": "integer", "minimum": 1, "maximum": 1000},
-        "font_style": {"type": "string", "enum": ["normal", "italic", "oblique"]}
+        "font_style": {"type": "string", "enum": ["normal", "italic"]}
     }
 }
 
@@ -53,7 +53,7 @@ TOOLS = [
     {"name": "inspect_plp", "description": "Inspect a PLP file in input/ or output/.", "inputSchema": {"type": "object", "required": ["filename"], "properties": {"filename": {"type": "string"}}}},
     {"name": "validate_plp", "description": "Validate the ZIP container and structural integrity of a PLP file.", "inputSchema": {"type": "object", "required": ["filename"], "properties": {"filename": {"type": "string"}}}},
     {"name": "roundtrip_plp", "description": "Create a verified PLP copy while preserving all data.plab properties and binary resources.", "inputSchema": {"type": "object", "required": ["filename", "output_filename"], "properties": {"filename": {"type": "string"}, "output_filename": {"type": "string"}}}},
-    {"name": "search_fonts", "description": "Search the starter catalog and locally imported fonts by name, category or style tags.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "category": {"type": "string", "enum": ["sans-serif", "serif", "display", "script", "handwriting", "monospace", "custom"]}, "limit": {"type": "integer", "minimum": 1, "maximum": 100}, "include_custom": {"type": "boolean"}}}},
+    {"name": "search_fonts", "description": "Search the synchronized font catalog and locally imported fonts by name, category or style tags.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "category": {"type": "string", "enum": ["sans-serif", "serif", "display", "script", "handwriting", "monospace", "custom"]}, "limit": {"type": "integer", "minimum": 1, "maximum": 100}, "include_custom": {"type": "boolean"}}}},
     {"name": "recommend_fonts", "description": "Recommend type families for a design style and role (headline, title, body, paragraph).", "inputSchema": {"type": "object", "required": ["style"], "properties": {"style": {"type": "string"}, "usage": {"type": "string"}, "language": {"type": "string"}, "limit": {"type": "integer", "minimum": 1, "maximum": 20}}}},
     {"name": "get_font_details", "description": "Return metadata, provider and downloaded/local variants for one font family.", "inputSchema": {"type": "object", "required": ["family_id"], "properties": {"family_id": {"type": "string"}}}},
     {"name": "sync_fontsource_catalog", "description": "Synchronize the complete Fontsource public font directory into the searchable local catalog. Use download_font with provider=fontsource to fetch a selected TTF face.", "inputSchema": {"type": "object", "properties": {}}},
