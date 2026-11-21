@@ -5,7 +5,7 @@
 
 ## 1. Goals
 
-- Give the generator a searchable starter library of 150 type families.
+- Give the generator a curated starter library plus the searchable full Fontsource directory after synchronization.
 - Recommend families by visual direction and text role.
 - Track family metadata, variants, source and license state.
 - Refresh provider metadata from Fontsource.
@@ -27,8 +27,8 @@ Font Intelligence
     │
     ▼
 Font Catalog API
-    ├── 150-family seed catalog
-    ├── Fontsource metadata synchronization
+    ├── curated seed catalog
+    ├── full Fontsource directory synchronization
     └── LNK custom family records
     │
     ▼
@@ -53,10 +53,10 @@ PLP Writer → editable .plp
 | Source | Responsibility | Current implementation |
 |---|---|---|
 | Google Fonts repository | TTF binary assets and each family's license file | `download_font` downloads a selected TTF variant and license text |
-| Fontsource API/CDN | Family IDs, weights, styles, subsets, versions and published TTF variants | `sync_fontsource_catalog` refreshes metadata; `download_font(provider=fontsource)` fetches a selected TTF face |
+| Fontsource API/CDN | Family IDs, weights, styles, subsets, versions and published TTF variants | `sync_fontsource_catalog` merges the complete public font directory; `download_font(provider=fontsource)` fetches a selected TTF face |
 | LNK custom library | User-provided proprietary or separately licensed typefaces | `import_custom_font` validates and stores TTF/OTF files locally |
 
-Fontsource package IDs are only marked verified after a successful metadata sync. The package candidate alone is not proof that a package or variant exists. Fontsource can now supply TTF assets directly through its documented API/CDN. Google Fonts remains available as a second TTF source.
+Fontsource package IDs are only marked verified after a successful metadata sync. The first sync can add new Fontsource families beyond the curated seed. The package candidate alone is not proof that a package or variant exists. Fontsource can now supply TTF assets directly through its documented API/CDN. Google Fonts remains available as a second TTF source.
 
 ## 4. Catalog schema
 
