@@ -23,7 +23,7 @@ The bundled MCP server is a **local stdio tool**. It writes generated projects t
 
 ## Critical native PLP font limitation
 
-The writer now serializes downloaded TTFs into `res/` and writes a `textTextFont.interval1.textsIntervalsFont` resource reference. This is the current writer contract; it has not yet been verified against a native custom-font PLP produced by the target PixelLab app version.
+The writer serializes the selected font file (TTF or OTF) into `res/` and writes a `textTextFont.interval1.textsIntervalsFont` resource reference (`/storage/emulated/0/pixelLab/presets/<project>/res/<id>`). This matches the structure observed in 17 native PixelLab projects: embedded fonts are real TTF/OTF files referenced this way, while fonts from PixelLab's own library use a relative `fonts/<folder>/<file>` path and are not embedded. A text can mix fonts through extra intervals (`interval2`, ...); the generator currently writes `interval1` only. An open/save/reopen test of a *generated* project on the target device is still required.
 
 When `font_family` is included in a `generate_plp` text object, the engine resolves the requested downloaded TTF face and embeds its bytes in `res/`; the writer points the text font interval to that resource. The serialization is implemented, but actual PixelLab compatibility must still be checked by opening, saving and reopening the generated project on the target device. If the family has not been downloaded, generation returns an actionable error rather than silently substituting another font.
 
@@ -34,7 +34,7 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 3. Plan a grid, margins and text fitting.
 4. Pass geometry in source-canvas pixels; the engine converts it to the 708-unit reference space.
 5. Use signed ARGB or `#RRGGBB` / `#AARRGGBB` colors.
-6. Call `generate_plp`; array order is bottom-to-top.
+6. Call `generate_plp`; array order is bottom-to-top. Read the returned `warnings` (missing font file, ignored fields).
 7. Call `validate_plp` after generation. Report structural validation separately from the still-required PixelLab device test.
 8. Clearly distinguish structural validation from a successful open/save test in PixelLab.
 
@@ -42,7 +42,7 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 
 - The local seed contains 150 curated families. `sync_fontsource_catalog` expands the searchable catalog with the full Fontsource directory and records IDs, weights, styles, subsets, categories and versions.
 - Downloaded Fontsource and Google Fonts TTFs are stored under `data/fonts/downloaded/`; Google Fonts downloads retain the repository license file. Review Fontsource package licensing before redistribution.
-- Custom TTF/OTF files are stored under `data/fonts/custom/`; only TTF files are currently embedded by the generator.
+- Custom TTF/OTF files are stored under `data/fonts/custom/`; both TTF and OTF files are embedded by the generator.
 - The importer's license field is a user declaration, not legal verification.
 - Only TTF/OTF are accepted for custom imports; WOFF/WOFF2 and TTC are rejected because PixelLab compatibility is not established.
 
@@ -50,7 +50,7 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 
 - Canvas, solid background, editable text and primitive shape objects.
 - Shape types: `rect`, `oval`, `tri1`.
-- Basic text size, color, alignment, rotation, opacity and spacing.
+- Text size, color, alignment (`alignment` bitfield), rotation, opacity, letter and line spacing, `max_width`, `hidden` and `locked`.
 - Downloaded TTF embedding and font-resource reference generation (PixelLab device compatibility pending).
 
 ## Not yet supported or verified
@@ -60,5 +60,6 @@ When `font_family` is included in a `generate_plp` text object, the engine resol
 - PixelLab's behavior when a project is opened on a device without the selected font.
 - Full fidelity round-trip editing of arbitrary PLP projects.
 - Images and advanced effects.
+- `raw_properties` and `raw_root_properties` are accepted by the schema but ignored; `generate_plp` returns a warning.
 
 Never silently approximate unsupported behavior as native PixelLab functionality.

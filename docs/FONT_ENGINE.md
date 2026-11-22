@@ -81,7 +81,7 @@ Each family record contains:
 | `sync_fontsource_catalog` | Refresh Fontsource metadata | no required arguments |
 | `download_font` | Download one TTF variant from Fontsource or Google Fonts | `family_id`, `weight`, `style`, `provider`, `subset` |
 | `import_custom_font` | Import a custom TTF/OTF from `input/fonts/` | `filename`, `license_name`, optional family/designer/weight/style |
-| `generate_plp` | Generate a PLP and optionally record intended font selections | per-text `font_family`, `font_weight`, `font_style` |
+| `generate_plp` | Generate a PLP and embed the selected font faces (download or import them first) | per-text `font_family`, `font_weight`, `font_style` |
 
 ## 6. Storage layout
 
@@ -101,14 +101,14 @@ output/<project>.plp              # includes selected TTF resources when request
 
 ## 7. Native PLP compatibility decision
 
-The writer now emits a `textTextFont.interval1.textsIntervalsFont` reference when a TTF resource is supplied. This matches the writer's internal serialization contract, but it has not yet been verified against a PixelLab-generated custom-font reference project or a live PixelLab open/save cycle.
+The writer emits a `textTextFont.interval1.textsIntervalsFont` reference when a font resource (TTF or OTF) is supplied. The structure was compared with 17 native PixelLab projects: embedded fonts are real TrueType or OpenType/CFF (`OTTO`) files stored as `res/<id>` and referenced by the absolute path `/storage/emulated/0/pixelLab/presets/<project>/res/<id>`; fonts from PixelLab's own library are referenced by a relative path (`fonts/<folder>/<file>`) and are not embedded. A text can mix fonts through additional intervals (`interval2`, ...) that override `interval1` on a character range; the generator currently writes `interval1` only. A live open/save/reopen test of a generated project is still pending.
 
 Therefore:
 
 1. Keep the PLP text objects native and editable.
-2. A downloaded TTF is now embedded in `res/` and referenced through the writer's `textTextFont.interval1.textsIntervalsFont` resource path.
+2. A downloaded or imported TTF/OTF is embedded in `res/` and referenced through the writer's `textTextFont.interval1.textsIntervalsFont` resource path.
 3. This is the writer's current serialization contract, not yet proof of compatibility with every PixelLab version.
-4. Compare a generated file with a PixelLab-generated reference project containing a custom font.
+4. Compared with native PixelLab projects (done, see above).
 5. Validate by opening, saving, closing and reopening the generated PLP in PixelLab on the target device.
 
 A structurally generated font resource is not yet a guarantee that the target PixelLab version will load or preserve that font.
@@ -132,13 +132,13 @@ Automated tests currently cover:
 - rejection of untrusted Fontsource CDN hosts
 - safe repository-relative font resolution and path-traversal rejection
 - embedding a supplied TTF into the PLP `res/` archive and writing the text font resource reference
+- OTF embedding, and MCP `alignment`, spacing, `max_width`, `hidden` and `locked` fields reaching the PLP
 
 Still required:
 
 - Live Fontsource API sync and TTF download in the deployed runtime
 - Live Google Fonts TTF download in the deployed runtime
 - PixelLab open/save/reopen test for generated PLP
-- Confirmation of the font resource path against a native PixelLab reference file
 - Android test for missing fonts and family fallback
 
 ## 10. Mobile/cloud deployment boundary

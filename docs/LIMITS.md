@@ -53,6 +53,13 @@ modulation (équivalent à NORMAL).
 ### SVG ↔ PLP
 En cours de conception. Aucune fonctionnalité.
 
+### Génération par prompt / spec (`generate_plp`)
+- `raw_properties` et `raw_root_properties` sont ignorés (avertissement dans la réponse).
+- Famille non téléchargée : erreur explicite. Fichier Montserrat/OpenSans absent du subset lnk-brand : le texte sort sans police embarquée (police par défaut de PixelLab) avec un avertissement.
+- Un texte n'utilise qu'une police (pas de mélange par intervalles).
+- Pas de calcul de retour à la ligne côté générateur : utiliser `\n`.
+- Compatibilité PixelLab d'un projet généré : test sur l'appareil encore à faire.
+
 ## Bugs / points ouverts
 
 - Thumb via composite() peut échouer sur des PSD avec ressources
