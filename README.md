@@ -93,7 +93,6 @@ Chaque plateforme doit encore être testée sur un poste réel. Le skill de réf
       claude/                   Config MCP Claude
       skills/prompt-to-plp/     Skill pour LLM
 
-    media/                      Assets versionnes (pas de code)
       fonts/catalog.seed.json   Catalogue de polices
       examples/                 Exemples visuels
 

@@ -43,7 +43,7 @@ Thumbs.db
 data/fonts/downloaded/
 data/fonts/custom/
 data/fonts/input/
-media/fonts/catalog.json
+data/fonts/catalog.json
 
 # Cache Python du MCP
 src/psd2plp_mcp/__pycache__/
