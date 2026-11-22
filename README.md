@@ -58,6 +58,18 @@ Dans Claude Code :
 
 Les projets générés, les polices téléchargées et le catalogue sont stockés dans `~/.psd2plp` (variable `PSD2PLP_HOME` pour changer ; `PSD2PLP_OUTPUT_DIR` pour la sortie seule). Depuis un clone du dépôt, le dossier du dépôt est utilisé.
 
+## Autres assistants
+
+Le serveur MCP (`psd2plp-mcp`) s'installe d'abord comme ci-dessus ; il tourne en local (stdio), donc seulement dans les applications et CLI qui lancent des processus locaux, pas dans ChatGPT mobile ou web.
+
+| Assistant | Installation |
+|---|---|
+| Codex / ChatGPT bureau | `codex plugin marketplace add Lemuelnk/psd2plp`, puis installer `pixellab-ai-generator` (plugin portable `plugins/chatgpt`, marketplace `.agents/plugins/marketplace.json`) |
+| Copilot CLI | `copilot plugin marketplace add Lemuelnk/psd2plp` puis `copilot plugin install psd2plp@lnk-psd2plp` (le CLI lit `.claude-plugin/`) |
+| Gemini CLI | `gemini extensions install https://github.com/Lemuelnk/psd2plp` (`gemini-extension.json` à la racine) |
+
+Chaque plateforme doit encore être testée sur un poste réel. Le skill de référence est `plugins/skills/prompt-to-plp/SKILL.md` ; `scripts/sync-plugin-skills.sh` le copie dans chaque plugin et un test vérifie que les copies sont identiques.
+
 ## Structure
 
     src/psd2plp/                Moteur de conversion
