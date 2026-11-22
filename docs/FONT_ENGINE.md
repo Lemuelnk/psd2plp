@@ -69,7 +69,7 @@ Each family record contains:
 - `availability`, `variants`, `custom`
 - after sync: `fontsource_id`, `fontsource_weights`, `fontsource_styles`, `fontsource_subsets`, `fontsource_type`, `fontsource_category`, `fontsource_variable`, `fontsource_version`, `fontsource_last_modified`
 
-`catalog.seed.json` is the immutable starter seed. `catalog.json` is created on first use and stores synchronized metadata and imported custom families. Do not overwrite `catalog.json` from the seed after user imports or provider syncs.
+`catalog.seed.json` is the immutable starter seed, shipped inside the Python package (`src/psd2plp_mcp/data/`). `catalog.json` is created on first use and stores synchronized metadata and imported custom families. Do not overwrite `catalog.json` from the seed after user imports or provider syncs.
 
 ## 5. MCP tool contracts
 
@@ -85,9 +85,10 @@ Each family record contains:
 
 ## 6. Storage layout
 
+Paths below are relative to the data root: the repository checkout in development, `~/.psd2plp` for an installed package, or `PSD2PLP_HOME` when set. `PSD2PLP_OUTPUT_DIR` overrides only the output directory.
+
 ```text
 media/fonts/
-├── catalog.seed.json
 └── catalog.json                 # runtime mutable index (gitignored)
 
 data/fonts/

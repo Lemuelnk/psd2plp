@@ -44,6 +44,20 @@ Le serveur MCP est un processus local en stdio ; cette configuration ne constitu
 
 Voir [docs/FONT_ENGINE.md](docs/FONT_ENGINE.md) et [le workflow prompt-to-plp](plugins/skills/prompt-to-plp/SKILL.md).
 
+## Plugin Claude Code
+
+Installer d'abord le serveur MCP (une fois), puis le plugin :
+
+    uv tool install git+https://github.com/Lemuelnk/psd2plp
+    # ou : pip install git+https://github.com/Lemuelnk/psd2plp
+
+Dans Claude Code :
+
+    /plugin marketplace add Lemuelnk/psd2plp
+    /plugin install psd2plp@lnk-psd2plp
+
+Les projets générés, les polices téléchargées et le catalogue sont stockés dans `~/.psd2plp` (variable `PSD2PLP_HOME` pour changer ; `PSD2PLP_OUTPUT_DIR` pour la sortie seule). Depuis un clone du dépôt, le dossier du dépôt est utilisé.
+
 ## Structure
 
     src/psd2plp/                Moteur de conversion
