@@ -65,4 +65,4 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 psd2plp = ["py.typed"]
-psd2plp_mcp = ["py.typed"]
+psd2plp_mcp = ["py.typed", "data/*.json"]

@@ -2,6 +2,7 @@
 """MCP stdio server for PixelLab AI Generator and its Font Engine."""
 from __future__ import annotations
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -13,11 +14,11 @@ from psd2plp_mcp.font_engine import (  # noqa: E402
     list_fonts, get_font, recommend_fonts, import_custom_font, download_font, sync_fontsource_catalog,
 )
 
-_ROOT = HERE.parent.parent
-OUTPUT_DIR = _ROOT / "output"
+from psd2plp_mcp.paths import HOME as _ROOT  # noqa: E402
+OUTPUT_DIR = Path(os.environ.get("PSD2PLP_OUTPUT_DIR", _ROOT / "output"))
 INPUT_DIR = _ROOT / "input"
 ( INPUT_DIR / "fonts" ).mkdir(parents=True, exist_ok=True)
-OUTPUT_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TEXT_OBJECT_SCHEMA = {
     "type": "object", "required": ["kind", "x", "y"],

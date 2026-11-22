@@ -18,9 +18,9 @@ from urllib.parse import urlparse
 from typing import Any
 
 import os as _os
-HERE = Path(__file__).resolve().parents[2]  # racine du repo
+from psd2plp_mcp.paths import HOME as HERE, PACKAGE_SEED  # racine des donnees (depot en dev, ~/.psd2plp installe)
 LIBRARY_DIR = Path(_os.environ.get("PSD2PLP_FONT_LIBRARY", HERE / "media" / "fonts"))
-SEED_PATH = LIBRARY_DIR / "catalog.seed.json"
+SEED_PATH = Path(_os.environ.get("PSD2PLP_FONT_SEED", PACKAGE_SEED))
 CATALOG_PATH = LIBRARY_DIR / "catalog.json"
 # Dossier pour les TTF téléchargés et custom (gitignoré)
 DOWNLOADS_DIR = Path(_os.environ.get("PSD2PLP_FONT_DOWNLOADS", HERE / "data" / "fonts" / "downloaded"))
