@@ -48,3 +48,6 @@ media/fonts/catalog.json
 # Cache Python du MCP
 src/psd2plp_mcp/__pycache__/
 src/psd2plp_mcp/*.pyc
+
+# Polices deposees pour import_custom_font (licences)
+input/fonts/
