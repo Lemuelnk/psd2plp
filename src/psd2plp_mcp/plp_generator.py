@@ -83,7 +83,10 @@ def _convert_text(obj: dict) -> SpecText:
     elif "." in font or "/" in font:
         font = font.split("/")[-1].split(".")[0]
 
-    align = obj.get("align") or obj.get("text_align") or "left"
+    align = obj.get("align") or obj.get("text_align")
+    if align is None:
+        # schema MCP : bitfield PixelLab (8388659 gauche, 8388658 centre, 8388657 droite)
+        align = {8388659: "left", 8388658: "center", 8388657: "right"}.get(obj.get("alignment"), "left")
     if align in ("start",):
         align = "left"
     elif align in ("end",):
@@ -98,6 +101,11 @@ def _convert_text(obj: dict) -> SpecText:
         size_px=size_px,
         font=font,
         font_path=font_path,
+        max_width=float(obj["max_width"]) if obj.get("max_width") else None,
+        letter_spacing=float(obj.get("letter_spacing", 0)),
+        line_spacing=float(obj.get("line_spacing", 0)),
+        hidden=bool(obj.get("hidden", False)),
+        locked=bool(obj.get("locked", False)),
         color=_normalize_hex(obj.get("text_color", obj.get("color", "#000000"))),
         align=align,
         opacity=int(obj.get("opacity", 100)),
@@ -185,6 +193,17 @@ def generate_plp(spec: dict, output_path: Path) -> dict:
     finally:
         tmp.unlink(missing_ok=True)
 
+    warnings = []
+    if spec.get("raw_root_properties"):
+        warnings.append("raw_root_properties est ignore par le generateur.")
+    if any(o.get("raw_properties") for o in spec.get("objects", [])):
+        warnings.append("raw_properties est ignore par le generateur.")
+    missing_fonts = sum(1 for o in proj.objects if o.kind == "text" and not o.font_resource)
+    if missing_fonts:
+        warnings.append(
+            f"{missing_fonts} texte(s) sans police embarquee (fichier introuvable) : "
+            "PixelLab utilisera sa police par defaut."
+        )
     n_text = sum(1 for o in proj.objects if o.kind == "text")
     n_shape = sum(1 for o in proj.objects if o.kind == "shape")
     return {
@@ -196,9 +215,11 @@ def generate_plp(spec: dict, output_path: Path) -> dict:
         "resources": len(proj.resources),
         "canvas": [proj.width, proj.height],
         "engine": "psd2plp.spec.builder",
+        "warnings": warnings,
         "limitations": [
-            "Fonts: embedded subset from lnk-brand (Montserrat, OpenSans). "
-            "Le catalogue du plugin ne sert que pour la recherche.",
+            "Fonts: Montserrat/OpenSans (subset lnk-brand) ou toute police du catalogue "
+            "telechargee (download_font) ou importee (import_custom_font, TTF/OTF), "
+            "embarquee dans res/. Compatibilite PixelLab a confirmer sur l'appareil.",
             "Images: PNG/JPG embarqués dans res/. SVG non supporté.",
             "Effets avancés (ombres, gradients, glow) non générés pour l'instant.",
         ],

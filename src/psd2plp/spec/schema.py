@@ -61,6 +61,11 @@ class SpecText:
     rotation: float = 0.0
     # runs multi-couleurs : [{"length": 6, "color": "#001A17"}, ...]
     runs: list[dict] | None = None
+    max_width: float | None = None  # largeur de boite en px canvas (None = auto)
+    letter_spacing: float = 0.0
+    line_spacing: float = 0.0
+    hidden: bool = False
+    locked: bool = False
 
 
 @dataclass

@@ -622,7 +622,7 @@ def resolve_font_file(family_id: str, weight: int = 400, style: str = "normal") 
     family = get_font(family_id)
     candidates = [
         variant for variant in family.get("variants", [])
-        if variant.get("format") == "ttf" and variant.get("file")
+        if variant.get("format") in ("ttf", "otf") and variant.get("file")
     ]
     if not candidates:
         raise FileNotFoundError(
@@ -643,7 +643,7 @@ def resolve_font_file(family_id: str, weight: int = 400, style: str = "normal") 
         path = (HERE / Path(*relative.parts)).resolve()
         if HERE.resolve() not in path.parents or not path.is_file():
             continue
-        if path.suffix.lower() != ".ttf":
+        if path.suffix.lower() not in (".ttf", ".otf"):
             continue
         return {"family": family, "variant": variant, "path": path}
     raise FileNotFoundError(

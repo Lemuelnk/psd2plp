@@ -95,7 +95,7 @@ def _build_text(o: SpecText, container_w: int, container_h: int,
             measured = n_chars * (size_px / CAP_RATIO) * 0.58
         if measured > max_width:
             size_px = size_px * (max_width / measured) * 0.98
-            final_width = _measure_text_width_px(o.text, o.font, size_px)
+            final_width = _measure_text_width_px(o.text, o.font, size_px, o.font_path)
         else:
             final_width = measured
     # Font
@@ -107,9 +107,9 @@ def _build_text(o: SpecText, container_w: int, container_h: int,
     if o.align == "center" and final_width is not None:
         x_canvas = (doc_w - final_width) / 2.0
     elif o.align == "right" and final_width is not None:
-        x_canvas = doc_w - final_width - (doc_w - (doc_w - 2 * 80)) / 2.0
-        # simplifie : aligne au bord droit du canvas moins la marge
-        x_canvas = doc_w - final_width - 80
+        # aligne au bord droit du canvas moins la marge de securite
+        margin_px = (doc_w - max_width) / 2.0 if max_width else 80.0
+        x_canvas = doc_w - final_width - margin_px
 
     # Convert canvas -> container
     cx = x_canvas * container_w / doc_w
@@ -137,6 +137,11 @@ def _build_text(o: SpecText, container_w: int, container_h: int,
         reference=ref,
         font_resource=font_res,
         alignment=alignment,
+        hidden=o.hidden,
+        locked=o.locked,
+        letter_spacing=o.letter_spacing,
+        line_spacing=o.line_spacing,
+        max_width=int(round(o.max_width * container_w / doc_w)) if o.max_width else -1,
     )
     if runs:
         obj.text_runs = runs
@@ -247,11 +252,11 @@ def plp_from_spec(spec: Spec, plp_name: str = "untitled") -> PlpProject:
         if cache_key in used_fonts:
             return used_fonts[cache_key]
         ttf = Path(font_path) if font_path else FONTS_DIR / f"{font_name}.ttf"
-        if not ttf.is_file() or ttf.suffix.lower() != ".ttf":
+        if not ttf.is_file() or ttf.suffix.lower() not in (".ttf", ".otf"):
             return None
         name = f"r{len(used_res):04d}"
         used_res.add(name)
-        proj.resources.append(PlpResource(name=name, kind="ttf", data=ttf.read_bytes()))
+        proj.resources.append(PlpResource(name=name, kind=ttf.suffix.lower().lstrip("."), data=ttf.read_bytes()))
         used_fonts[cache_key] = name
         return name
 
@@ -330,7 +335,7 @@ def _thumb_draw_shape(draw, o, ratio):
 def _thumb_draw_text(img, o, ratio):
     from PIL import ImageDraw, ImageFont
     ttf = Path(o.font_path) if o.font_path else FONTS_DIR / f"{o.font}.ttf"
-    if not ttf.exists() or ttf.suffix.lower() != ".ttf":
+    if not ttf.exists() or ttf.suffix.lower() not in (".ttf", ".otf"):
         return
     font_size_em = (o.size_px / CAP_RATIO) * ratio
     if font_size_em < 1:
