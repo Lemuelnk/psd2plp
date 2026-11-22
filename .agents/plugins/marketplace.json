@@ -1,0 +1,12 @@
+{
+  "name": "lnk-psd2plp",
+  "interface": { "displayName": "LNK PSD2PLP" },
+  "plugins": [
+    {
+      "name": "pixellab-ai-generator",
+      "source": { "source": "local", "path": "./plugins/chatgpt" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Creativity"
+    }
+  ]
+}

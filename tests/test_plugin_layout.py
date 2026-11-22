@@ -22,6 +22,17 @@ def test_marketplace_sources_exist():
 def test_plugin_skill_copies_match_reference():
     reference = (ROOT / "plugins/skills/prompt-to-plp/SKILL.md").read_text(encoding="utf-8")
     copies = list(ROOT.glob("plugins/*/skills/prompt-to-plp/SKILL.md"))
+    copies.append(ROOT / "skills/prompt-to-plp/SKILL.md")
     assert copies
     for copy in copies:
         assert copy.read_text(encoding="utf-8") == reference, f"{copy} differs: run scripts/sync-plugin-skills.sh"
+
+
+def test_other_assistant_manifests_are_valid():
+    gemini = _load("gemini-extension.json")
+    assert gemini["mcpServers"]["psd2plp"]["command"] == "psd2plp-mcp"
+    assert _load("plugins/chatgpt/plugin.json")["name"]
+    assert _load("plugins/chatgpt/mcp.json")["mcpServers"]["psd2plp"]["command"] == "psd2plp-mcp"
+    market = _load(".agents/plugins/marketplace.json")
+    for entry in market["plugins"]:
+        assert (ROOT / entry["source"]["path"] / "plugin.json").is_file()

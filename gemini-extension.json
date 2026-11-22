@@ -1,0 +1,11 @@
+{
+  "name": "psd2plp",
+  "version": "0.2.0",
+  "description": "Génère des projets PixelLab (.plp) éditables à partir d'un prompt, avec Font Engine.",
+  "mcpServers": {
+    "psd2plp": {
+      "command": "psd2plp-mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}

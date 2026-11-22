@@ -1,10 +1,10 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "pixellab-ai-generator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate editable PixelLab PLP projects from text prompts. PSD/SVG import, JSON spec, 150-family font catalog.",
   "author": {
-    "name": "Lemuel  Kanyuka",
+    "name": "Lemuel Kanyuka",
     "email": "kanyukalemuel0@gmail.com"
   },
   "keywords": [
@@ -22,7 +22,7 @@
         "displayName": "PixelLab AI Generator",
         "shortDescription": "Prompt to editable PixelLab",
         "longDescription": "Generate editable PixelLab PLP projects, inspect and validate files, search and recommend typefaces, synchronize Fontsource metadata, download Google Fonts TTF variants and import licensed custom TTF/OTF files.",
-        "developerName": "Lemuel  Kanyuka",
+        "developerName": "Lemuel Kanyuka",
         "category": "Creativity",
         "capabilities": [
           "Interactive"
@@ -34,5 +34,8 @@
         ]
       }
     }
-  }
+  },
+  "homepage": "https://github.com/Lemuelnk/psd2plp",
+  "repository": "https://github.com/Lemuelnk/psd2plp",
+  "license": "Apache-2.0"
 }

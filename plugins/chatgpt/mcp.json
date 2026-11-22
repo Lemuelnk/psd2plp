@@ -3,11 +3,7 @@
   "mcpServers": {
     "psd2plp": {
       "type": "stdio",
-      "command": "python3",
-      "args": ["-m", "psd2plp_mcp.server"],
-      "env": {
-        "PYTHONPATH": "${PLUGIN_ROOT}/../../src"
-      }
+      "command": "psd2plp-mcp"
     }
   }
 }
