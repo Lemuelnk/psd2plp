@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "psd2plp": {
+      "command": "psd2plp-mcp"
+    }
+  }
+}

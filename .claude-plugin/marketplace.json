@@ -1,0 +1,12 @@
+{
+  "name": "lnk-psd2plp",
+  "owner": { "name": "Lemuel Nk" },
+  "plugins": [
+    {
+      "name": "psd2plp",
+      "source": "./plugins/claude",
+      "description": "Génère des projets PixelLab (.plp) éditables à partir d'un prompt, avec Font Engine.",
+      "version": "0.2.0"
+    }
+  ]
+}

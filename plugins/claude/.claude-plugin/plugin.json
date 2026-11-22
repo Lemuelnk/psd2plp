@@ -1,0 +1,10 @@
+{
+  "name": "psd2plp",
+  "version": "0.2.0",
+  "description": "Génère des projets PixelLab (.plp) éditables à partir d'un prompt, avec Font Engine (recherche, téléchargement et import de polices).",
+  "author": { "name": "Lemuel Nk" },
+  "homepage": "https://github.com/Lemuelnk/psd2plp",
+  "repository": "https://github.com/Lemuelnk/psd2plp",
+  "license": "Apache-2.0",
+  "keywords": ["pixellab", "plp", "design", "fonts", "mcp"]
+}
