@@ -1,0 +1,7 @@
+{
+  "ALPHA":   {"match": "V3(3)",        "tests": "textes centres/droite, 2 polices, interlettrage negatif, texte vertical"},
+  "BRAVO":   {"match": "Post-04",      "tests": "Bebas Neue geants, interligne, textes a gauche et centres"},
+  "CHARLIE": {"match": "Template-05",  "tests": "grands titres a gauche, transformation de texte decalee"},
+  "DELTA":   {"match": "B Food",       "tests": "effets de calque, groupes a modes de fusion"},
+  "ECHO":    {"match": "Broken Glass", "tests": "13 groupes a modes de fusion, sans texte, lent (~90 s)"}
+}
