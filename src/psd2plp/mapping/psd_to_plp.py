@@ -89,7 +89,7 @@ def _justification(layer) -> str:
     return {1: "right", 2: "center"}.get(j, "left")
 
 
-def _text_geometry(layer, scale, txt, bbox) -> dict:
+def _text_geometry(layer, scale, txt, bbox, doc_w=1080.0) -> dict:
     """Position, largeur de boite, alignement et angle d'un texte PSD (en px du conteneur).
 
     Sans rotation : gauche = ancre au bord gauche ; centre/droite = boite un peu plus large que
@@ -109,8 +109,13 @@ def _text_geometry(layer, scale, txt, bbox) -> dict:
         if just == "left":
             return dict(x=x0 * scale, y=y0 * scale, max_width=-1, alignment=ALIGN["left"], rotation=0.0)
         pad = max(12.0, 0.2 * W)
-        bw = W + 2 * pad
-        bx = x0 - pad if just == "center" else x1 - bw
+        if just == "center":
+            cx = (x0 + x1) / 2.0
+            hw = max(W / 2.0, min(W / 2.0 + pad, cx, doc_w - cx))
+            bx, bw = cx - hw, 2.0 * hw
+        else:
+            bx = max(0.0, x1 - (W + 2 * pad))
+            bw = max(x1 - bx, W)
         return dict(x=bx * scale, y=y0 * scale, max_width=int(round(bw * scale)),
                     alignment=ALIGN[just], rotation=0.0)
 
@@ -180,7 +185,7 @@ def convert_psd(psd_path: str, bg_color: int = -1) -> PlpProject:
                 txt = (layer.text or "").replace("\r", "\n")
                 if not txt.strip():
                     continue
-                g = _text_geometry(layer, scale, txt, b)
+                g = _text_geometry(layer, scale, txt, b, psd.width)
                 proj.objects.append(PlpObject(
                     kind="text",
                     x=g["x"], y=g["y"],

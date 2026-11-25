@@ -47,3 +47,15 @@ def test_rotated_text_pivots_on_ink_center():
     assert g["rotation"] == pytest.approx(90.0)
     assert g["x"] + g["max_width"] / 2 == pytest.approx(930.5 * SCALE, abs=1.0)
     assert g["max_width"] >= 447 * SCALE
+
+
+def test_right_text_box_stays_inside_canvas():
+    g = m._text_geometry(_layer(just=1), SCALE, "Hello", (77, 1089, 443, 1150), 1080)
+    assert g["x"] >= 0
+    assert g["x"] + g["max_width"] == pytest.approx(443 * SCALE, abs=1.0)
+
+
+def test_centered_text_box_stays_inside_canvas_and_centered():
+    g = m._text_geometry(_layer(just=2), SCALE, "Hello", (10, 100, 200, 140), 1080)
+    assert g["x"] >= 0
+    assert g["x"] + g["max_width"] / 2 == pytest.approx(105 * SCALE, abs=1.0)
