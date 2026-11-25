@@ -1,5 +1,6 @@
 from __future__ import annotations
 import io
+import math
 from psd_tools import PSDImage
 from PIL import Image
 from psd2plp.pixellab.model import PlpProject, PlpObject, PlpResource, argb_to_int
@@ -65,10 +66,64 @@ def _text_size(layer, scale, bbox_h) -> float:
     d = _first_run(layer)
     fs = float(d.get("FontSize") or 32.0)
     sy = _matrix_scale_y(layer) or 1.0
-    return max(8.0, fs * sy * scale * 0.68)
+    return max(8.0, fs * sy * scale * TEXT_SIZE_FACTOR)
 
 
 REF_WIDTH = 708
+
+# CALIB2 (PixelLab) : textTextSize = taille em en px du conteneur ; le PSD donne la taille em en px.
+TEXT_SIZE_FACTOR = 1.0
+# Valeurs de textAlignment vues dans des PLP natifs (constantes Gravity d'Android). A confirmer avec CALIB3.
+ALIGN = {"left": 8388659, "center": 17, "right": 53}
+ROTATION_EPS = 0.5       # degres
+LINE_HEIGHT_EM = 1.2     # hauteur de ligne estimee, pour placer le pivot de rotation
+
+
+def _justification(layer) -> str:
+    """left / center / right (Photoshop : 0 gauche, 1 droite, 2 centre)."""
+    try:
+        runs = (layer.engine_dict or {}).get("ParagraphRun", {}).get("RunArray", [])
+        j = int(runs[0]["ParagraphSheet"]["Properties"].get("Justification", 0))
+    except Exception:
+        return "left"
+    return {1: "right", 2: "center"}.get(j, "left")
+
+
+def _text_geometry(layer, scale, txt, bbox) -> dict:
+    """Position, largeur de boite, alignement et angle d'un texte PSD (en px du conteneur).
+
+    Sans rotation : gauche = ancre au bord gauche ; centre/droite = boite un peu plus large que
+    l'encre, ancree au centre / au bord droit, pour que le texte reste bien place meme si la
+    police de remplacement a une autre largeur.
+    Avec rotation : PixelLab tourne autour du centre de la boite (CALIB2) ; on centre donc la
+    boite sur le centre de l'encre et on centre le texte dedans.
+    """
+    x0, y0, x1, y1 = bbox
+    W, H = x1 - x0, y1 - y0
+    em = _text_size(layer, scale, H) / scale
+    n_lines = txt.count("\n") + 1
+    theta = _matrix_rotation(layer)
+    just = _justification(layer)
+
+    if abs(theta) < ROTATION_EPS:
+        if just == "left":
+            return dict(x=x0 * scale, y=y0 * scale, max_width=-1, alignment=ALIGN["left"], rotation=0.0)
+        pad = max(12.0, 0.2 * W)
+        bw = W + 2 * pad
+        bx = x0 - pad if just == "center" else x1 - bw
+        return dict(x=bx * scale, y=y0 * scale, max_width=int(round(bw * scale)),
+                    alignment=ALIGN[just], rotation=0.0)
+
+    t = math.radians(theta)
+    c, s_ = abs(math.cos(t)), abs(math.sin(t))
+    h = em * LINE_HEIGHT_EM * n_lines
+    w = (W - h * s_) / c if c >= s_ else (H - h * c) / s_
+    w = max(w, 1.0)
+    pad = max(12.0, 0.2 * w)
+    bw = w + 2 * pad
+    cx, cy = (x0 + x1) / 2.0, (y0 + y1) / 2.0
+    return dict(x=(cx - bw / 2.0) * scale, y=(cy - h / 2.0) * scale, max_width=int(round(bw * scale)),
+                alignment=ALIGN["center"], rotation=theta)
 
 
 def _group_has_blend(group) -> bool:
@@ -125,15 +180,17 @@ def convert_psd(psd_path: str, bg_color: int = -1) -> PlpProject:
                 txt = (layer.text or "").replace("\r", "\n")
                 if not txt.strip():
                     continue
+                g = _text_geometry(layer, scale, txt, b)
                 proj.objects.append(PlpObject(
                     kind="text",
-                    x=b[0] * scale, y=b[1] * scale,
+                    x=g["x"], y=g["y"],
                     text=txt,
                     text_size=_text_size(layer, scale, h),
                     text_color=_text_color(layer),
                     opacity=int(layer.opacity / 255 * 100),
-                    max_width=-1,
-                    rotation=_matrix_rotation(layer),
+                    max_width=g["max_width"],
+                    alignment=g["alignment"],
+                    rotation=g["rotation"],
                 ))
                 continue
 
