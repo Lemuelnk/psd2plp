@@ -88,10 +88,8 @@ Each family record contains:
 Paths below are relative to the data root: the repository checkout in development, `~/.psd2plp` for an installed package, or `PSD2PLP_HOME` when set. `PSD2PLP_OUTPUT_DIR` overrides only the output directory.
 
 ```text
-media/fonts/
-└── catalog.json                 # runtime mutable index (gitignored)
-
 data/fonts/
+├── catalog.json                 # runtime mutable index (gitignored)
 ├── downloaded/<provider>/<font-id>/  # downloaded TTF files
 └── custom/<family-slug>/              # imported TTF/OTF files
 

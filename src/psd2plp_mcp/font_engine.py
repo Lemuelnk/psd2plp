@@ -19,7 +19,7 @@ from typing import Any
 
 import os as _os
 from psd2plp_mcp.paths import HOME as HERE, PACKAGE_SEED  # racine des donnees (depot en dev, ~/.psd2plp installe)
-LIBRARY_DIR = Path(_os.environ.get("PSD2PLP_FONT_LIBRARY", HERE / "media" / "fonts"))
+LIBRARY_DIR = Path(_os.environ.get("PSD2PLP_FONT_LIBRARY", HERE / "data" / "fonts"))
 SEED_PATH = Path(_os.environ.get("PSD2PLP_FONT_SEED", PACKAGE_SEED))
 CATALOG_PATH = LIBRARY_DIR / "catalog.json"
 # Dossier pour les TTF téléchargés et custom (gitignoré)
