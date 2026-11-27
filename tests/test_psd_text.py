@@ -65,3 +65,9 @@ def test_apply_caps_uppercases_only_runs_with_all_caps():
     sheet = lambda caps: {"StyleSheet": {"StyleSheetData": {"FontCaps": caps}}}
     layer = SimpleNamespace(engine_dict={"StyleRun": {"RunArray": [sheet(2), sheet(0)], "RunLengthArray": [3, 4]}})
     assert m._apply_caps(layer, "abcdefg") == "ABCdefg"
+
+
+def test_apply_caps_uppercases_only_runs_with_all_caps():
+    sheet = lambda caps: {"StyleSheet": {"StyleSheetData": {"FontCaps": caps}}}
+    layer = SimpleNamespace(engine_dict={"StyleRun": {"RunArray": [sheet(2), sheet(0)], "RunLengthArray": [3, 4]}})
+    assert m._apply_caps(layer, "abcdefg") == "ABCdefg"
