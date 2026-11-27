@@ -131,6 +131,26 @@ def _text_geometry(layer, scale, txt, bbox, doc_w=1080.0) -> dict:
                 alignment=ALIGN["center"], rotation=theta)
 
 
+def _apply_caps(layer, txt: str) -> str:
+    """Applique l'attribut Capitales (FontCaps == 2) de Photoshop, run par run."""
+    try:
+        sr = (layer.engine_dict or {}).get("StyleRun", {})
+        runs, lens = sr.get("RunArray", []), list(sr.get("RunLengthArray", []))
+    except Exception:
+        return txt
+    out, pos = [], 0
+    for r, n in zip(runs, lens):
+        seg = txt[pos:pos + int(n)]
+        try:
+            caps = int(r.get("StyleSheet", {}).get("StyleSheetData", {}).get("FontCaps", 0) or 0)
+        except Exception:
+            caps = 0
+        out.append(seg.upper() if caps == 2 else seg)
+        pos += int(n)
+    out.append(txt[pos:])
+    return "".join(out)
+
+
 def _group_has_blend(group) -> bool:
     try:
         for sub in group.descendants():
@@ -183,6 +203,7 @@ def convert_psd(psd_path: str, bg_color: int = -1) -> PlpProject:
 
             if kind == "TypeLayer":
                 txt = (layer.text or "").replace("\r", "\n")
+                txt = _apply_caps(layer, txt)
                 if not txt.strip():
                     continue
                 g = _text_geometry(layer, scale, txt, b, psd.width)

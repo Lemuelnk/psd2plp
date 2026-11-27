@@ -59,3 +59,9 @@ def test_centered_text_box_stays_inside_canvas_and_centered():
     g = m._text_geometry(_layer(just=2), SCALE, "Hello", (10, 100, 200, 140), 1080)
     assert g["x"] >= 0
     assert g["x"] + g["max_width"] / 2 == pytest.approx(105 * SCALE, abs=1.0)
+
+
+def test_apply_caps_uppercases_only_runs_with_all_caps():
+    sheet = lambda caps: {"StyleSheet": {"StyleSheetData": {"FontCaps": caps}}}
+    layer = SimpleNamespace(engine_dict={"StyleRun": {"RunArray": [sheet(2), sheet(0)], "RunLengthArray": [3, 4]}})
+    assert m._apply_caps(layer, "abcdefg") == "ABCdefg"
