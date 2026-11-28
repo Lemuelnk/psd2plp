@@ -40,6 +40,9 @@ def glyph_h(path):
 
 
 idx = font_index()
+from psd2plp.config import FONTS_DIR  # noqa: E402
+for _p in FONTS_DIR.glob("*.ttf"):
+    idx.setdefault(_p.stem.lower(), _p)
 print("police | base observee | hhea typo win yMax | lsb(H) cap | marge gauche implicite (px a em=100)")
 for name, (base, left) in OBS.items():
     p = idx.get(name.lower())

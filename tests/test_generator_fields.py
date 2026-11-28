@@ -46,3 +46,19 @@ def test_builder_embeds_otf_as_plp_resource(tmp_path):
     proj = plp_from_spec(spec, plp_name="otf_test")
     assert any(r.kind == "otf" and r.data.startswith(b"OTTO") for r in proj.resources)
     assert _text_obj(proj).font_resource
+
+
+def test_writer_writes_integer_spacing(tmp_path):
+    import json
+    import zipfile
+
+    from psd2plp.pixellab.writer import write_plp
+
+    spec = Spec(canvas=SpecCanvas(width=400, height=400),
+                objects=[SpecText(text="Hi", x=10, y=10, letter_spacing=3.4, line_spacing=-2.6)])
+    out = write_plp(plp_from_spec(spec, plp_name="int_test"), tmp_path / "t.plp", plp_name="int_test")
+    z = zipfile.ZipFile(out)
+    d = json.loads(z.read(next(n for n in z.namelist() if n.endswith("data.plab"))))
+    o = next(v for v in d["objectsBundle"].values() if "textTextString" in v)
+    assert o["textLetterSpacing"] == 3 and isinstance(o["textLetterSpacing"], int)
+    assert o["textLineSpacing"] == -3 and isinstance(o["textLineSpacing"], int)

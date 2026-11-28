@@ -145,8 +145,8 @@ def _build_text(o, name, cw=708, ch=1001):
         "objectHidden": o.hidden, "objectLocked": o.locked,
         "textReference": o.reference, "textTextString": o.text,
         "textTextSize": str(o.text_size),
-        "textLetterSpacing": o.letter_spacing,
-        "textLineSpacing": o.line_spacing,
+        "textLetterSpacing": int(round(o.letter_spacing)),
+        "textLineSpacing": int(round(o.line_spacing)),
         "textMaxWidth": o.max_width, "textAlignment": o.alignment,
     })
 
