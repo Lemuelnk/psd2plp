@@ -31,7 +31,7 @@ TEXT_OBJECT_SCHEMA = {
         "shape_type": {"type": "string", "enum": ["rect", "oval", "tri1"]},
         "radius_pct": {"type": "integer", "minimum": 0, "maximum": 100},
         "rotation": {"type": "number"}, "opacity": {"type": "integer", "minimum": 0, "maximum": 100},
-        "alignment": {"type": "integer", "enum": [8388659, 8388658, 8388657]},
+        "alignment": {"type": "integer", "enum": [8388659, 51, 17, 49, 53, 8388661], "description": "textAlignment mesure dans PixelLab : 8388659 et 51 gauche, 17 et 49 centre, 53 et 8388661 droite"},
         "max_width": {"type": "number"}, "letter_spacing": {"type": "number"},
         "line_spacing": {"type": "number"}, "hidden": {"type": "boolean"},
         "locked": {"type": "boolean"}, "raw_properties": {"type": "object"},

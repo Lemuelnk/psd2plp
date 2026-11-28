@@ -85,8 +85,8 @@ def _convert_text(obj: dict) -> SpecText:
 
     align = obj.get("align") or obj.get("text_align")
     if align is None:
-        # schema MCP : bitfield PixelLab (8388659 gauche, 8388658 centre, 8388657 droite)
-        align = {8388659: "left", 8388658: "center", 8388657: "right"}.get(obj.get("alignment"), "left")
+        # schema MCP : bitfield PixelLab (17 et 49 centre, 53 et 8388661 droite, le reste gauche)
+        align = {8388659: "left", 51: "left", 17: "center", 49: "center", 53: "right", 8388661: "right"}.get(obj.get("alignment"), "left")
     if align in ("start",):
         align = "left"
     elif align in ("end",):

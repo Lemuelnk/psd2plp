@@ -123,7 +123,7 @@ def _build_text(o: SpecText, container_w: int, container_h: int,
         runs = [(int(r["length"]), _hex_to_argb(r["color"])) for r in o.runs]
 
     # Alignement -> bitfield PixelLab
-    align_map = {"left": 8388659, "center": 8388658, "right": 8388657}
+    align_map = {"left": 8388659, "center": 17, "right": 53}
     alignment = align_map.get(o.align, 8388659)
 
     obj = PlpObject(

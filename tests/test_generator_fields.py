@@ -12,7 +12,7 @@ def _text_obj(proj):
 def test_convert_text_reads_mcp_alignment_and_spacing_fields():
     t = _convert_text({
         "kind": "text", "x": 10, "y": 20, "text": "Hello", "text_size": 50,
-        "alignment": 8388657, "max_width": 300, "letter_spacing": 2.5,
+        "alignment": 53, "max_width": 300, "letter_spacing": 2.5,
         "line_spacing": 4, "hidden": True, "locked": True,
     })
     assert t.align == "right"

@@ -73,7 +73,7 @@ REF_WIDTH = 708
 
 # CALIB2 (PixelLab) : textTextSize = taille em en px du conteneur ; le PSD donne la taille em en px.
 TEXT_SIZE_FACTOR = 1.0
-# Valeurs de textAlignment vues dans des PLP natifs (constantes Gravity d'Android). A confirmer avec CALIB3.
+# textAlignment mesure dans PixelLab (CALIB3) : 17 et 49 centre, 53 et 8388661 droite, 8388659 / 51 / 8388657 / 8388658 gauche.
 ALIGN = {"left": 8388659, "center": 17, "right": 53}
 ROTATION_EPS = 0.5       # degres
 LINE_HEIGHT_EM = 1.2     # hauteur de ligne estimee, pour placer le pivot de rotation
